@@ -1,0 +1,1937 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unit 29 – May and Might 1 | Bài giảng điện tử</title>
+<style>
+:root{
+  --pastel:#dbeafe;
+  --pastel-2:#eef6ff;
+  --pastel-3:#f6faff;
+  --navy:#1e3a5f;
+  --navy-2:#2c5282;
+  --blue:#1d4ed8;
+  --blue-bg:#e0ecff;
+  --green:#15803d;
+  --green-bg:#dcfce7;
+  --red:#b91c1c;
+  --red-bg:#fee2e2;
+  --amber:#b45309;
+  --amber-bg:#fef3c7;
+  --text:#1f2937;
+  --muted:#5b6b7f;
+  --white:#ffffff;
+  --border:#c7d9ee;
+  --radius:14px;
+  --shadow:0 2px 10px rgba(30,58,95,.08);
+  --shadow-lg:0 8px 28px rgba(30,58,95,.16);
+  --topbar-h:62px;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",system-ui,-apple-system,sans-serif;
+  background:linear-gradient(180deg,#f6faff 0%,#eef6ff 100%);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-text-size-adjust:100%;
+  overflow-x:hidden;
+}
+button{font-family:inherit;}
+/* ============ TOP BAR ============ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;height:var(--topbar-h);
+  background:var(--navy);
+  color:#fff;
+  display:flex;align-items:center;gap:10px;
+  padding:0 12px;
+  z-index:60;
+  box-shadow:0 2px 12px rgba(30,58,95,.25);
+}
+.menu-btn{
+  background:rgba(255,255,255,.12);border:none;color:#fff;
+  width:40px;height:40px;border-radius:10px;font-size:19px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+}
+.menu-btn:hover{background:rgba(255,255,255,.22);}
+.brand{
+  font-weight:700;font-size:15px;letter-spacing:.2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1 1 auto;
+}
+.brand small{display:block;font-weight:400;font-size:11px;opacity:.75;letter-spacing:.3px;}
+.top-actions{display:flex;gap:6px;flex:0 0 auto;}
+.icon-btn{
+  background:rgba(255,255,255,.12);border:none;color:#fff;
+  height:38px;padding:0 12px;border-radius:10px;font-size:13px;cursor:pointer;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+}
+.icon-btn:hover{background:rgba(255,255,255,.24);}
+.progress-wrap{
+  position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.18);
+}
+.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#7dd3fc,#38bdf8);transition:width .35s ease;}
+/* ============ LAYOUT ============ */
+.layout{display:block;padding-top:var(--topbar-h);min-height:100vh;}
+.sidebar{
+  position:fixed;top:var(--topbar-h);bottom:0;left:0;width:270px;
+  background:#fff;border-right:1px solid var(--border);
+  overflow-y:auto;padding:14px 10px 90px;
+  transform:translateX(-100%);transition:transform .28s ease;z-index:55;
+  -webkit-overflow-scrolling:touch;
+}
+.sidebar.open{transform:translateX(0);box-shadow:var(--shadow-lg);}
+.side-title{
+  font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);
+  padding:6px 12px;font-weight:700;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+  background:transparent;border:none;padding:10px 12px;border-radius:10px;
+  font-size:14px;color:var(--navy-2);cursor:pointer;margin-bottom:2px;line-height:1.35;
+}
+.nav-item:hover{background:var(--pastel-2);}
+.nav-item.active{background:var(--pastel);color:var(--navy);font-weight:700;}
+.nav-num{
+  flex:0 0 24px;height:24px;border-radius:50%;background:var(--pastel-2);
+  color:var(--navy-2);font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-item.active .nav-num{background:var(--navy);color:#fff;}
+.overlay{
+  position:fixed;inset:0;background:rgba(15,30,50,.45);z-index:54;display:none;
+}
+.overlay.show{display:block;}
+.main{padding:18px 14px 110px;max-width:1080px;margin:0 auto;}
+/* ============ SCREENS ============ */
+.screen{display:none;animation:fade .28s ease;}
+.screen.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+h1{font-size:26px;line-height:1.25;color:var(--navy);margin:0 0 6px;}
+h2{font-size:21px;color:var(--navy);margin:0 0 14px;line-height:1.3;}
+h3{font-size:17px;color:var(--navy-2);margin:22px 0 10px;}
+h4{font-size:15px;color:var(--navy-2);margin:16px 0 8px;}
+p{margin:8px 0;}
+ul,ol{margin:8px 0;padding-left:22px;}
+li{margin:5px 0;}
+.card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px;box-shadow:var(--shadow);margin-bottom:16px;
+}
+.card.soft{background:var(--pastel-3);}
+.badge{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.6px;
+  text-transform:uppercase;padding:3px 9px;border-radius:999px;margin-bottom:8px;
+}
+.badge-original{background:#e0ecff;color:#1e40af;}
+.badge-additional{background:#fef3c7;color:#92400e;}
+.badge-teacher{background:#ede9fe;color:#5b21b6;}
+.badge-student{background:#dcfce7;color:#166534;}
+.s-mod{color:var(--blue);font-weight:700;background:var(--blue-bg);padding:1px 5px;border-radius:5px;}
+.s-verb{color:var(--green);font-weight:700;}
+.s-sub{color:var(--navy);font-weight:700;}
+.s-neg{color:var(--red);font-weight:700;}
+.en{color:#0f172a;}
+.vi{color:#4b5563;font-style:italic;}
+.note{color:#6b7280;font-size:13px;}
+.dialogue{list-style:none;padding-left:0;}
+.dialogue li{
+  background:var(--pastel-3);border-left:3px solid var(--pastel);
+  padding:8px 12px;border-radius:8px;margin:6px 0;
+}
+/* ============ TABLES ============ */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0;}
+table.grammar{
+  width:100%;border-collapse:collapse;min-width:460px;font-size:14px;background:#fff;
+}
+table.grammar th,table.grammar td{
+  border:1px solid var(--border);padding:9px 11px;text-align:left;vertical-align:top;
+}
+table.grammar th{background:var(--pastel);color:var(--navy);font-weight:700;}
+table.grammar tr:nth-child(even) td{background:var(--pastel-3);}
+.table-cards{display:none;}
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  background:var(--navy);color:#fff;border:none;border-radius:11px;
+  padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;
+  min-height:44px;transition:transform .12s ease,background .18s ease;
+}
+.btn:hover{background:var(--navy-2);}
+.btn:active{transform:scale(.97);}
+.btn.secondary{background:#fff;color:var(--navy);border:1.5px solid var(--border);}
+.btn.secondary:hover{background:var(--pastel-2);}
+.btn.ghost{background:var(--pastel-2);color:var(--navy-2);}
+.btn.ghost:hover{background:var(--pastel);}
+.btn.green{background:#15803d;}
+.btn.green:hover{background:#166534;}
+.btn.small{padding:8px 14px;font-size:13px;min-height:38px;}
+.btn:disabled{opacity:.5;cursor:not-allowed;}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+/* ============ INTRO ============ */
+.hero{
+  background:linear-gradient(135deg,#1e3a5f 0%,#2c5282 55%,#3b82a8 100%);
+  color:#fff;border-radius:20px;padding:32px 22px;text-align:center;
+  box-shadow:var(--shadow-lg);margin-bottom:18px;
+}
+.hero .unit-tag{
+  display:inline-block;background:rgba(255,255,255,.18);padding:5px 16px;border-radius:999px;
+  font-size:13px;letter-spacing:2px;font-weight:700;margin-bottom:14px;
+}
+.hero h1{color:#fff;font-size:30px;margin:0 0 6px;letter-spacing:.5px;}
+.hero .sub{font-size:15px;opacity:.9;margin-bottom:4px;}
+.hero .sub-vi{font-size:13px;opacity:.75;}
+.hero .btn{margin-top:20px;background:#fff;color:var(--navy);font-weight:700;}
+.hero .btn:hover{background:var(--pastel);}
+/* ============ OBJECTIVES ============ */
+.obj-item{
+  display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:13px 14px;margin-bottom:10px;cursor:pointer;transition:.18s;
+}
+.obj-item:hover{border-color:#93c5fd;background:var(--pastel-3);}
+.obj-item.done{background:#f0fdf4;border-color:#86efac;}
+.obj-check{
+  flex:0 0 24px;height:24px;border:2px solid var(--border);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;
+  background:#fff;margin-top:2px;
+}
+.obj-item.done .obj-check{background:var(--green);border-color:var(--green);}
+.obj-text{font-size:14.5px;}
+.obj-text .vi{display:block;font-size:13px;margin-top:2px;}
+/* ============ QUIZ / PRACTICE ============ */
+.q-box{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);}
+.q-index{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.q-text{font-size:16.5px;font-weight:600;color:#0f172a;margin-bottom:14px;line-height:1.55;}
+.opts{display:grid;gap:9px;}
+.opt{
+  display:flex;align-items:center;gap:11px;background:var(--pastel-3);
+  border:1.6px solid var(--border);border-radius:11px;padding:12px 14px;
+  cursor:pointer;font-size:15px;text-align:left;width:100%;transition:.15s;min-height:48px;
+}
+.opt:hover{border-color:#93c5fd;background:var(--pastel-2);}
+.opt .letter{
+  flex:0 0 26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12.5px;color:var(--navy-2);
+}
+.opt.selected{border-color:var(--navy);background:var(--pastel);}
+.opt.selected .letter{background:var(--navy);color:#fff;border-color:var(--navy);}
+.opt.correct{border-color:var(--green);background:var(--green-bg);}
+.opt.correct .letter{background:var(--green);color:#fff;border-color:var(--green);}
+.opt.wrong{border-color:var(--red);background:var(--red-bg);}
+.opt.wrong .letter{background:var(--red);color:#fff;border-color:var(--red);}
+.opt:disabled{cursor:default;}
+.feedback{
+  margin-top:14px;border-radius:11px;padding:12px 14px;font-size:14.5px;display:none;
+}
+.feedback.show{display:block;}
+.feedback.ok{background:var(--green-bg);border:1px solid #86efac;color:#14532d;}
+.feedback.no{background:var(--red-bg);border:1px solid #fca5a5;color:#7f1d1d;}
+.feedback .fb-title{font-weight:700;margin-bottom:4px;}
+/* ============ EXERCISES ============ */
+.bank{
+  background:var(--amber-bg);border:1px dashed #fcd34d;border-radius:11px;
+  padding:11px 14px;font-size:14px;margin:10px 0 16px;
+}
+.bank strong{color:#92400e;}
+.ex-item{
+  background:#fff;border:1px solid var(--border);border-radius:11px;
+  padding:12px 14px;margin-bottom:10px;
+}
+.ex-num{display:inline-block;font-weight:700;color:var(--navy);margin-right:6px;}
+.ex-line{font-size:15px;line-height:2;}
+input.blank{
+  border:none;border-bottom:2px solid var(--navy-2);background:var(--pastel-3);
+  font-family:inherit;font-size:15px;color:var(--navy);padding:3px 8px;min-width:130px;
+  border-radius:6px 6px 0 0;outline:none;max-width:100%;
+}
+input.blank:focus{border-bottom-color:var(--blue);background:var(--pastel-2);}
+input.blank.given{background:#eef2f7;color:#64748b;border-bottom-color:#cbd5e1;}
+input.blank.ok{border-bottom-color:var(--green);background:var(--green-bg);color:#14532d;}
+input.blank.bad{border-bottom-color:var(--red);background:var(--red-bg);color:#7f1d1d;}
+.ex-explain{
+  margin-top:8px;font-size:13.5px;border-radius:9px;padding:9px 12px;display:none;
+}
+.ex-explain.show{display:block;}
+.ex-explain.ok{background:var(--green-bg);color:#14532d;}
+.ex-explain.bad{background:var(--red-bg);color:#7f1d1d;}
+.ex-explain.info{background:var(--pastel-2);color:var(--navy-2);}
+.ex-result{
+  margin-top:12px;font-weight:700;font-size:15px;padding:12px 14px;border-radius:11px;display:none;
+}
+.ex-result.show{display:block;}
+.ex-result.ok{background:var(--green-bg);color:#14532d;border:1px solid #86efac;}
+.ex-result.mid{background:var(--amber-bg);color:#92400e;border:1px solid #fcd34d;}
+/* ============ ANSWER KEY ============ */
+.ak-block{display:none;}
+.ak-block.show{display:block;}
+.ak-item{border-left:3px solid var(--pastel);padding:8px 0 8px 14px;margin-bottom:12px;}
+.ak-en{font-weight:600;color:#0f172a;}
+.ak-ans{color:var(--green);font-weight:700;}
+.ak-vi{color:#4b5563;font-size:14px;}
+/* ============ COMMUNICATIVE ============ */
+.act-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:16px;box-shadow:var(--shadow);margin-bottom:16px;
+}
+.situation{
+  background:var(--pastel-2);border-left:4px solid var(--navy-2);border-radius:9px;
+  padding:11px 14px;margin:10px 0;font-size:15px;
+}
+.reveal{
+  display:none;background:var(--green-bg);border:1px solid #86efac;border-radius:10px;
+  padding:11px 14px;margin-top:10px;font-size:14.5px;color:#14532d;
+}
+.reveal.show{display:block;}
+/* ============ QUIZ RESULT ============ */
+.result-panel{
+  background:linear-gradient(135deg,#1e3a5f,#2c5282);color:#fff;border-radius:18px;
+  padding:22px;text-align:center;margin-bottom:18px;
+}
+.score-big{font-size:44px;font-weight:800;line-height:1;}
+.score-sub{opacity:.85;font-size:14px;margin-top:6px;}
+.review-list{margin-top:14px;text-align:left;background:rgba(255,255,255,.12);border-radius:11px;padding:12px 14px;font-size:14px;}
+/* ============ FOOTER NAV ============ */
+.footer-nav{
+  position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);
+  border-top:1px solid var(--border);padding:10px 14px;
+  display:flex;justify-content:space-between;gap:10px;z-index:50;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding-bottom:calc(10px + env(safe-area-inset-bottom));
+}
+.footer-nav .btn{flex:1 1 0;max-width:220px;}
+.footer-nav .spacer{flex:1 1 auto;}
+/* ============ MISC ============ */
+.chip{
+  display:inline-block;background:var(--pastel-2);color:var(--navy-2);
+  border-radius:999px;padding:3px 11px;font-size:12.5px;margin:2px 4px 2px 0;font-weight:600;
+}
+.divider{height:1px;background:var(--border);margin:18px 0;}
+.warn{
+  background:var(--amber-bg);border-left:4px solid #f59e0b;border-radius:9px;
+  padding:11px 14px;font-size:14px;color:#78350f;margin:12px 0;
+}
+.toast{
+  position:fixed;left:50%;bottom:88px;transform:translateX(-50%) translateY(20px);
+  background:var(--navy);color:#fff;padding:11px 20px;border-radius:999px;
+  font-size:14px;opacity:0;pointer-events:none;transition:.3s;z-index:80;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.mobile-only{display:inline-flex;}
+/* ============ RESPONSIVE ============ */
+@media (min-width:900px){
+  .menu-btn{display:none;}
+  .sidebar{transform:translateX(0);box-shadow:none;}
+  .overlay{display:none !important;}
+  .main{margin-left:270px;padding:26px 30px 110px;}
+  .footer-nav{left:270px;}
+  .brand{font-size:16px;}
+}
+@media (max-width:899px){
+  .sidebar{width:290px;}
+}
+@media (max-width:640px){
+  .hero{padding:26px 16px;}
+  .hero h1{font-size:24px;}
+  h1{font-size:22px;}
+  h2{font-size:19px;}
+  .card{padding:14px;}
+  .q-text{font-size:15.5px;}
+  table.grammar{min-width:0;}
+  .table-wrap{overflow-x:visible;}
+  table.grammar thead{display:none;}
+  table.grammar,table.grammar tbody,table.grammar tr,table.grammar td{display:block;width:100%;}
+  table.grammar tr{
+    border:1px solid var(--border);border-radius:11px;margin-bottom:10px;
+    background:#fff;padding:6px 8px;
+  }
+  table.grammar td{border:none;padding:6px 8px;}
+  table.grammar td::before{
+    content:attr(data-label);display:block;font-size:11px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:2px;
+  }
+  table.grammar tr:nth-child(even) td{background:transparent;}
+  input.blank{min-width:110px;font-size:14.5px;}
+  .footer-nav .btn{font-size:13.5px;padding:10px 12px;}
+}
+@media (max-width:380px){
+  .brand small{display:none;}
+  .hero h1{font-size:21px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Mở danh mục bài học">☰</button>
+  <div class="brand">
+    Unit 29 · May and Might 1
+    <small>English Grammar in Use – Raymond Murphy</small>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" id="fsBtn" title="Toàn màn hình">⛶ <span class="mobile-only" style="display:none">Full</span></button>
+    <button class="icon-btn" id="resetBtn" title="Xóa tiến độ">↺</button>
+  </div>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="layout">
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-title">Nội dung bài giảng</div>
+    <nav id="navList"></nav>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main class="main" id="main">
+
+    <!-- ============ 1. INTRO ============ -->
+    <section class="screen active" id="s-intro">
+      <div class="hero">
+        <div class="unit-tag">UNIT 29</div>
+        <h1>MAY AND MIGHT 1</h1>
+        <p class="sub">Expressing Possibility</p>
+        <p class="sub-vi">Diễn tả khả năng – một việc có thể xảy ra nhưng người nói không chắc chắn</p>
+        <button class="btn" id="startBtn">▶ Start Lesson</button>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-additional">Warm-up · Tình huống dẫn nhập</span>
+        <h2 style="margin-top:6px;">Where is Ben?</h2>
+        <p>Giáo viên đặt câu hỏi cho cả lớp:</p>
+        <ul class="dialogue">
+          <li><strong>Teacher:</strong> Where is Ben? Does anybody know?</li>
+          <li><strong>Student A:</strong> I don't know. He <span class="s-mod">may</span> <span class="s-verb">be</span> in his office.</li>
+          <li><strong>Student B:</strong> He <span class="s-mod">might</span> <span class="s-verb">be having</span> lunch.</li>
+          <li><strong>Teacher:</strong> Good! Ask Kate. She <span class="s-mod">might</span> <span class="s-verb">know</span>.</li>
+        </ul>
+        <p class="vi">Không ai biết chắc Ben đang ở đâu. Mỗi người chỉ đưa ra một <strong>khả năng</strong>. Khi người nói không chắc chắn về một sự việc, tiếng Anh dùng <strong>may</strong> hoặc <strong>might</strong>.</p>
+        <div class="divider"></div>
+        <p><strong>Câu hỏi gợi mở cho học sinh:</strong></p>
+        <ul>
+          <li>Trong ba câu trả lời trên, người nói có chắc chắn không? <span class="vi">(Không – tất cả chỉ là phỏng đoán.)</span></li>
+          <li>Nếu chắc chắn Ben ở văn phòng, ta sẽ nói thế nào? <span class="vi">(He is in his office. / He must be in his office.)</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 2. OBJECTIVES ============ -->
+    <section class="screen" id="s-objectives">
+      <h2>🎯 Learning Objectives</h2>
+      <p class="vi">Sau khi hoàn thành bài học, học sinh có thể tự đánh dấu những mục tiêu đã hiểu. Nhấn vào từng ô để tích.</p>
+
+      <div id="objList"></div>
+
+      <div class="card soft" style="margin-top:16px;">
+        <p style="margin:0;"><strong>Teaching language:</strong> Tiếng Việt kết hợp tiếng Anh · <strong>Level:</strong> A2–B1</p>
+        <p style="margin:6px 0 0;"><strong>Main reference:</strong> English Grammar in Use – Raymond Murphy, Unit 29</p>
+      </div>
+    </section>
+
+    <!-- ============ 3. THEORY A ============ -->
+    <section class="screen" id="s-theoryA">
+      <h2>📘 A – May / Might: diễn tả khả năng</h2>
+
+      <div class="card">
+        <span class="badge badge-original">Original Theory – Unit 29, phần A</span>
+
+        <p><strong>Study this example situation:</strong></p>
+        <p class="en">You are looking for Ben. Nobody is sure where he is, but you get some suggestions.</p>
+        <p class="vi">Bạn đang tìm Ben. Không ai chắc anh ấy ở đâu, nhưng mọi người đưa ra một vài gợi ý.</p>
+
+        <ul class="dialogue">
+          <li>Where's Ben?</li>
+          <li>He <span class="s-mod">may</span> <span class="s-verb">be</span> in his office. <span class="note">(= perhaps he is in his office)</span></li>
+          <li>He <span class="s-mod">might</span> <span class="s-verb">be having</span> lunch. <span class="note">(= perhaps he is having lunch)</span></li>
+          <li>Ask Kate. She <span class="s-mod">might</span> <span class="s-verb">know</span>. <span class="note">(= perhaps she knows)</span></li>
+        </ul>
+
+        <div class="card soft" style="margin:10px 0 0;box-shadow:none;">
+          <p><strong>Giải thích tiếng Việt:</strong></p>
+          <ul style="margin:0;">
+            <li><em>He may be in his office.</em> = Có lẽ anh ấy đang ở trong văn phòng. <span class="note">(may + be + cụm giới từ chỉ nơi chốn)</span></li>
+            <li><em>He might be having lunch.</em> = Có lẽ anh ấy đang ăn trưa. <span class="note">(might + be + V-ing → hành động có thể đang diễn ra)</span></li>
+            <li><em>She might know.</em> = Có lẽ cô ấy biết. <span class="note">(might + động từ nguyên mẫu <strong>know</strong>)</span></li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="en">We use <span class="s-mod">may</span> or <span class="s-mod">might</span> to say that something is possible. You can use <span class="s-mod">may</span> or <span class="s-mod">might</span>:</p>
+        <p class="vi">Chúng ta dùng <strong>may</strong> hoặc <strong>might</strong> để nói rằng một việc nào đó <strong>có thể</strong> xảy ra. Có thể dùng <strong>may</strong> hoặc <strong>might</strong> — nghĩa gần như giống nhau; <strong>might</strong> thường mang sắc thái ít chắc chắn hơn một chút.</p>
+
+        <ul class="dialogue">
+          <li>It <span class="s-mod">may</span> <span class="s-verb">be</span> true. or It <span class="s-mod">might</span> <span class="s-verb">be</span> true. <span class="note">(= perhaps it is true)</span></li>
+          <li>She <span class="s-mod">might</span> <span class="s-verb">know</span>. or She <span class="s-mod">may</span> <span class="s-verb">know</span>.</li>
+        </ul>
+        <p class="vi">Có lẽ điều đó là đúng. / Có lẽ cô ấy biết. — Hai câu này có thể thay thế cho nhau.</p>
+
+        <div class="divider"></div>
+
+        <p class="en">The negative forms are <span class="s-mod">may not</span> and <span class="s-mod">might not</span>:</p>
+        <p class="vi">Dạng phủ định là <strong>may not</strong> và <strong>might not</strong>:</p>
+
+        <ul class="dialogue">
+          <li>It <span class="s-mod">may <span class="s-neg">not</span></span> <span class="s-verb">be</span> true. <span class="note">(= perhaps it isn't true)</span></li>
+          <li>She <span class="s-mod">might <span class="s-neg">not</span></span> <span class="s-verb">know</span>. <span class="note">(= perhaps she doesn't know)</span></li>
+        </ul>
+        <p class="vi">Có lẽ điều đó không đúng. / Có lẽ cô ấy không biết.</p>
+
+        <div class="divider"></div>
+
+        <h4>Bảng cấu trúc (nguyên văn)</h4>
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead>
+              <tr><th>Chủ ngữ</th><th>May / Might</th><th>(not)</th><th>Dạng theo sau</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Chủ ngữ">I/you/he (etc.)</td>
+                <td data-label="May / Might">may / might</td>
+                <td data-label="(not)">(not)</td>
+                <td data-label="Dạng theo sau">
+                  be (true / in his office etc.)<br>
+                  be -ing (doing / working / having etc.)<br>
+                  know / work / want etc.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card soft" style="margin:12px 0 0;box-shadow:none;">
+          <span class="badge badge-additional">Additional Explanation</span>
+          <p><strong>Các công thức rút ra từ bảng trên:</strong></p>
+          <ul>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">V (nguyên mẫu)</span> — <em>She might know.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">be</span> + <span class="s-verb">adj / noun</span> — <em>She may be tired. / They might be Brazilian.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">be</span> + <span class="s-verb">V-ing</span> — <em>He might be having lunch.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-neg">not</span> + <span class="s-verb">V (nguyên mẫu)</span> — <em>She might not know.</em></li>
+          </ul>
+          <p class="note" style="margin-bottom:0;">Lưu ý: sau <strong>may/might</strong> <em>không</em> chia động từ (không dùng <em>knows, is, are, was</em>…). Luôn dùng dạng nguyên mẫu: <em>may be</em>, <em>might know</em>, <em>may not be</em>.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="en">Note the difference between <span class="s-mod">may be</span> (2 words) and <span class="s-mod">maybe</span> (1 word):</p>
+        <p class="vi">Phân biệt <strong>may be</strong> (2 từ) và <strong>maybe</strong> (1 từ):</p>
+
+        <ul class="dialogue">
+          <li>It <span class="s-mod">may</span> <span class="s-verb">be</span> true. <span class="note">(may + verb)</span></li>
+          <li>'Is it true?' '<span class="s-mod">Maybe</span>. I'm not sure.' <span class="note">(maybe = it's possible, perhaps)</span></li>
+        </ul>
+
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead><tr><th>Dạng</th><th>Chức năng</th><th>Ví dụ</th><th>Nghĩa tiếng Việt</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="Dạng"><strong>may be</strong> (2 từ)</td>
+                <td data-label="Chức năng">may + động từ <em>be</em> → đứng trong câu như một động từ</td>
+                <td data-label="Ví dụ">It <strong>may be</strong> true.</td>
+                <td data-label="Nghĩa">Có lẽ điều đó là đúng.</td>
+              </tr>
+              <tr>
+                <td data-label="Dạng"><strong>maybe</strong> (1 từ)</td>
+                <td data-label="Chức năng">trạng từ (= perhaps), thường đứng đầu câu hoặc đứng một mình</td>
+                <td data-label="Ví dụ">'Is it true?' '<strong>Maybe</strong>. I'm not sure.'</td>
+                <td data-label="Nghĩa">"Điều đó có đúng không?" "Có lẽ vậy. Tôi không chắc."</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn">
+          <strong>Lỗi thường gặp:</strong> viết <em>"It maybe true."</em> là <strong>sai</strong> vì câu thiếu động từ. Phải viết <em>"It <strong>may be</strong> true."</em>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-additional">Quick Check A · Kiểm tra nhanh</span>
+        <p>Giáo viên hỏi nhanh – học sinh trả lời miệng trước khi bấm xem gợi ý.</p>
+        <ol>
+          <li>Viết lại câu sau bằng <em>might</em>: <em>"Perhaps she knows."</em>
+            <div><button class="btn ghost small" data-reveal="qc1">Xem gợi ý</button>
+            <div class="reveal" id="qc1"><strong>She might know.</strong> — <span class="vi">might + V nguyên mẫu <em>know</em>.</span></div></div>
+          </li>
+          <li>Điền vào chỗ trống: <em>"He ______ be having lunch."</em> (may / maybe)
+            <div><button class="btn ghost small" data-reveal="qc2">Xem gợi ý</button>
+            <div class="reveal" id="qc2"><strong>may</strong> — <span class="vi">Ở đây cần động từ khuyết thiếu <em>may</em> + <em>be having</em>. <em>maybe</em> là trạng từ, không dùng được.</span></div></div>
+          </li>
+          <li>Câu nào đúng? <em>(a) It may not true. (b) It may not be true.</em>
+            <div><button class="btn ghost small" data-reveal="qc3">Xem gợi ý</button>
+            <div class="reveal" id="qc3"><strong>(b) It may not be true.</strong> — <span class="vi">Sau <em>may not</em> vẫn cần động từ: <em>be</em>.</span></div></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 4. THEORY B ============ -->
+    <section class="screen" id="s-theoryB">
+      <h2>📗 B – May / Might have + V3/ed (suy đoán về quá khứ)</h2>
+
+      <div class="card">
+        <span class="badge badge-original">Original Theory – Unit 29, phần B</span>
+        <p class="en">For the past we use <span class="s-mod">may have …</span> or <span class="s-mod">might have …</span>:</p>
+        <p class="vi">Đối với quá khứ, chúng ta dùng <strong>may have …</strong> hoặc <strong>might have …</strong>:</p>
+
+        <ul class="dialogue">
+          <li>A: I wonder why Kate didn't answer her phone.<br>
+              B: She <span class="s-mod">may have been</span> asleep. <span class="note">(= perhaps she was asleep)</span></li>
+          <li>A: I can't find my phone anywhere.<br>
+              B: You <span class="s-mod">might have left</span> it at work. <span class="note">(= perhaps you left it at work)</span></li>
+          <li>A: Why wasn't Amy at the meeting yesterday?<br>
+              B: She <span class="s-mod">might <span class="s-neg">not</span> have known</span> about it. <span class="note">(= perhaps she didn't know)</span></li>
+          <li>A: I wonder why David was in such a bad mood yesterday.<br>
+              B: He <span class="s-mod">may <span class="s-neg">not</span> have been feeling</span> well. <span class="note">(= perhaps he wasn't feeling well)</span></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h4>Bảng cấu trúc (nguyên văn)</h4>
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead>
+              <tr><th>Chủ ngữ</th><th>May / Might</th><th>(not) have</th><th>Dạng theo sau</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Chủ ngữ">I/you/he (etc.)</td>
+                <td data-label="May / Might">may / might</td>
+                <td data-label="(not) have">(not) have</td>
+                <td data-label="Dạng theo sau">
+                  been (asleep / at home etc.)<br>
+                  been -ing (doing / working / feeling etc.)<br>
+                  known / had / wanted / left etc.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card soft" style="margin:12px 0 0;box-shadow:none;">
+          <span class="badge badge-additional">Additional Explanation</span>
+          <p><strong>Các công thức rút ra:</strong></p>
+          <ul>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">have</span> + <span class="s-verb">V3/ed</span> — <em>You might have left it at work.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">have been</span> + <span class="s-verb">adj / noun</span> — <em>She may have been asleep. / He may have been ill.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">have been</span> + <span class="s-verb">V-ing</span> — <em>He may not have been feeling well.</em></li>
+            <li><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-neg">not</span> + <span class="s-verb">have</span> + <span class="s-verb">V3/ed</span> — <em>She might not have known about it.</em></li>
+          </ul>
+          <p style="margin-bottom:0;"><strong>Đây là cấu trúc dùng để suy đoán về những sự việc trong quá khứ</strong> — người nói không chắc chắn chuyện gì đã thực sự xảy ra, nên chỉ đưa ra một khả năng.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-additional">Phân tích chi tiết từng ví dụ</span>
+
+        <h4>1. Kate và chiếc điện thoại</h4>
+        <p class="en"><strong>Câu gốc:</strong> "I wonder why Kate didn't answer her phone." — "She <span class="s-mod">may have been</span> asleep." <span class="note">(= perhaps she was asleep)</span></p>
+        <p class="vi"><strong>Dịch:</strong> "Tôi tự hỏi tại sao Kate không nghe điện thoại." — "Có lẽ lúc đó cô ấy đang ngủ."</p>
+        <ul>
+          <li><strong>Vì sao dùng cấu trúc này?</strong> Sự việc "Kate không nghe điện thoại" đã xảy ra trong quá khứ, người nói chỉ đoán nguyên nhân → dùng <em>may have + V3/ed</em>.</li>
+          <li><strong>Phân tích dạng động từ:</strong> <em>may</em> + <em>have</em> + <em>been</em> (V3 của <em>be</em>) + <em>asleep</em> (tính từ).</li>
+          <li><strong>Ví dụ tương tự:</strong> <em>She may have been tired.</em> = Có lẽ lúc đó cô ấy mệt.</li>
+        </ul>
+
+        <h4>2. Chiếc điện thoại bị thất lạc</h4>
+        <p class="en"><strong>Câu gốc:</strong> "I can't find my phone anywhere." — "You <span class="s-mod">might have left</span> it at work." <span class="note">(= perhaps you left it at work)</span></p>
+        <p class="vi"><strong>Dịch:</strong> "Tôi không tìm thấy điện thoại của mình ở đâu cả." — "Có thể bạn đã để quên nó ở chỗ làm."</p>
+        <ul>
+          <li><strong>Vì sao dùng cấu trúc này?</strong> Hành động "để quên" có thể đã xảy ra trước thời điểm nói → <em>might have + V3/ed</em>.</li>
+          <li><strong>Phân tích dạng động từ:</strong> <em>might</em> + <em>have</em> + <em>left</em> (V3 của <em>leave</em>).</li>
+          <li><strong>Ví dụ tương tự:</strong> <em>You might have left your umbrella on the bus.</em> = Có thể bạn đã để quên ô trên xe buýt.</li>
+        </ul>
+
+        <h4>3. Amy và cuộc họp</h4>
+        <p class="en"><strong>Câu gốc:</strong> "Why wasn't Amy at the meeting yesterday?" — "She <span class="s-mod">might <span class="s-neg">not</span> have known</span> about it." <span class="note">(= perhaps she didn't know)</span></p>
+        <p class="vi"><strong>Dịch:</strong> "Tại sao hôm qua Amy không có mặt ở cuộc họp?" — "Có thể cô ấy đã không biết về cuộc họp đó."</p>
+        <ul>
+          <li><strong>Vì sao dùng cấu trúc này?</strong> Đây là suy đoán <strong>phủ định</strong> về quá khứ: có thể cô ấy đã không biết, nhưng người nói không chắc.</li>
+          <li><strong>Phân tích dạng động từ:</strong> <em>might</em> + <em>not</em> + <em>have</em> + <em>known</em> (V3 của <em>know</em>).</li>
+          <li><strong>Ví dụ tương tự:</strong> <em>She might not have seen my message.</em> = Có thể cô ấy đã không thấy tin nhắn của tôi.</li>
+        </ul>
+
+        <h4>4. David và tâm trạng hôm qua</h4>
+        <p class="en"><strong>Câu gốc:</strong> "I wonder why David was in such a bad mood yesterday." — "He <span class="s-mod">may <span class="s-neg">not</span> have been feeling</span> well." <span class="note">(= perhaps he wasn't feeling well)</span></p>
+        <p class="vi"><strong>Dịch:</strong> "Tôi tự hỏi tại sao hôm qua David lại có tâm trạng tệ như vậy." — "Có thể lúc đó anh ấy không được khỏe."</p>
+        <ul>
+          <li><strong>Vì sao dùng cấu trúc này?</strong> Diễn tả một trạng thái <strong>đang diễn ra</strong> trong quá khứ (không được khỏe suốt lúc đó) → <em>may not have been + V-ing</em>.</li>
+          <li><strong>Phân tích dạng động từ:</strong> <em>may</em> + <em>not</em> + <em>have</em> + <em>been</em> + <em>feeling</em> (V-ing).</li>
+          <li><strong>Ví dụ tương tự:</strong> <em>He may not have been sleeping when you called.</em> = Có thể lúc bạn gọi anh ấy không ngủ.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 5. THEORY C ============ -->
+    <section class="screen" id="s-theoryC">
+      <h2>📙 C – Could, couldn't have và might not have</h2>
+
+      <div class="card">
+        <span class="badge badge-original">Original Theory – Unit 29, phần C</span>
+
+        <p class="en"><span class="s-mod">could</span> is similar to <span class="s-mod">may</span> and <span class="s-mod">might</span>:</p>
+        <p class="vi"><strong>could</strong> có cách dùng tương tự <strong>may</strong> và <strong>might</strong>:</p>
+
+        <ul class="dialogue">
+          <li>It's a strange story, but it <span class="s-mod">could be</span> true. <span class="note">(= it is possible that it's true)</span></li>
+          <li>You <span class="s-mod">could have left</span> your phone at work. <span class="note">(= it's possible that you left it there)</span></li>
+        </ul>
+        <p class="vi">Đó là một câu chuyện lạ, nhưng nó có thể là thật. / Có thể bạn đã để điện thoại ở chỗ làm.</p>
+
+        <div class="divider"></div>
+
+        <p class="en">But <span class="s-neg">couldn't</span> (negative) is different from <span class="s-mod">may not</span> and <span class="s-mod">might not</span>. Compare:</p>
+        <p class="vi">Nhưng <strong>couldn't</strong> (phủ định) lại <strong>khác</strong> với <strong>may not</strong> và <strong>might not</strong>. So sánh:</p>
+
+        <ul class="dialogue">
+          <li>Sarah <span class="s-neg">couldn't have received</span> my message. Otherwise she would have replied.<br>
+              <span class="note">(= it is not possible that she got my message)</span></li>
+          <li>Why hasn't Sarah replied to my message? I suppose she <span class="s-mod">might <span class="s-neg">not</span> have received</span> it.<br>
+              <span class="note">(= it's possible that she didn't receive it – perhaps she did, perhaps she didn't)</span></li>
+        </ul>
+
+        <div class="card soft" style="margin:12px 0 0;box-shadow:none;">
+          <p><strong>Giải thích tiếng Việt:</strong></p>
+          <ul style="margin:0;">
+            <li><em>Sarah couldn't have received my message.</em> = Sarah <strong>không thể nào</strong> đã nhận được tin nhắn của tôi. → Người nói <strong>loại trừ hoàn toàn</strong> khả năng đó (vì nếu nhận được, cô ấy đã trả lời).</li>
+            <li><em>I suppose she might not have received it.</em> = Tôi cho rằng có thể cô ấy đã không nhận được tin nhắn đó. → Người nói <strong>không chắc</strong>: có thể cô ấy không nhận được, mà cũng có thể cô ấy đã nhận được.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="badge badge-additional">Bảng so sánh</span>
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead>
+              <tr><th>Cấu trúc</th><th>Ý nghĩa</th><th>Ví dụ</th><th>Dịch</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Cấu trúc"><strong>could + V</strong></td>
+                <td data-label="Ý nghĩa">Có thể xảy ra (giống may/might)</td>
+                <td data-label="Ví dụ">It's a strange story, but it <strong>could be</strong> true.</td>
+                <td data-label="Dịch">Đó là một câu chuyện lạ, nhưng nó có thể là thật.</td>
+              </tr>
+              <tr>
+                <td data-label="Cấu trúc"><strong>could have + V3/ed</strong></td>
+                <td data-label="Ý nghĩa">Một việc <em>có thể đã</em> xảy ra trong quá khứ</td>
+                <td data-label="Ví dụ">You <strong>could have left</strong> your phone at work.</td>
+                <td data-label="Dịch">Có thể bạn đã để điện thoại ở chỗ làm.</td>
+              </tr>
+              <tr>
+                <td data-label="Cấu trúc"><strong>might not have + V3/ed</strong></td>
+                <td data-label="Ý nghĩa">Có thể một việc đã <em>không</em> xảy ra — nhưng người nói <strong>chưa chắc chắn</strong> (có thể có, có thể không)</td>
+                <td data-label="Ví dụ">I suppose she <strong>might not have received</strong> it.</td>
+                <td data-label="Dịch">Tôi cho rằng có thể cô ấy đã không nhận được nó.</td>
+              </tr>
+              <tr>
+                <td data-label="Cấu trúc"><strong>couldn't have + V3/ed</strong></td>
+                <td data-label="Ý nghĩa"><strong>Không thể nào</strong> đã xảy ra — người nói cho rằng điều đó là không thể</td>
+                <td data-label="Ví dụ">Sarah <strong>couldn't have received</strong> my message.</td>
+                <td data-label="Dịch">Sarah không thể nào đã nhận được tin nhắn của tôi.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warn">
+          <strong>Ghi nhớ quan trọng:</strong> Không được đánh đồng <strong>couldn't have</strong> với <strong>might not have</strong>.
+          <br>• <em>might not have + V3/ed</em> = "có lẽ đã không…" → vẫn còn khả năng ngược lại.
+          <br>• <em>couldn't have + V3/ed</em> = "không thể nào đã…" → loại bỏ hoàn toàn khả năng đó.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. VISUAL SUMMARY ============ -->
+    <section class="screen" id="s-summary">
+      <h2>🗺️ Visual Grammar Summary – Sơ đồ tổng kết</h2>
+      <p class="vi">Sơ đồ dưới đây giúp phân biệt ba mốc thời gian. Hãy nhớ: đây <strong>không phải</strong> là những quy tắc thời gian tuyệt đối trong mọi ngữ cảnh, mà là cách diễn đạt ý nghĩa dựa trên từng ví dụ cụ thể.</p>
+
+      <div class="card" style="border-left:5px solid #38bdf8;">
+        <h3 style="margin-top:0;">① Hiện tại hoặc tương lai</h3>
+        <p style="font-size:17px;"><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">V (nguyên mẫu)</span></p>
+        <p class="en">She <span class="s-mod">might</span> <span class="s-verb">know</span>. · He <span class="s-mod">may</span> <span class="s-verb">come</span> later.</p>
+        <p class="vi">Có lẽ cô ấy biết. · Có lẽ lát nữa anh ấy sẽ đến.</p>
+        <p style="margin-bottom:0;"><span class="chip">Phủ định: may/might not + V</span><span class="chip">She might not know.</span></p>
+      </div>
+
+      <div class="card" style="border-left:5px solid #34d399;">
+        <h3 style="margin-top:0;">② Hành động có thể đang diễn ra</h3>
+        <p style="font-size:17px;"><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">be</span> + <span class="s-verb">V-ing</span></p>
+        <p class="en">He <span class="s-mod">might</span> <span class="s-verb">be having</span> lunch. · She <span class="s-mod">may</span> <span class="s-verb">be working</span>.</p>
+        <p class="vi">Có lẽ anh ấy đang ăn trưa. · Có lẽ cô ấy đang làm việc.</p>
+        <p style="margin-bottom:0;"><span class="chip">Phủ định: may/might not be + V-ing</span><span class="chip">He may not be feeling well.</span></p>
+      </div>
+
+      <div class="card" style="border-left:5px solid #f59e0b;">
+        <h3 style="margin-top:0;">③ Suy đoán về quá khứ</h3>
+        <p style="font-size:17px;"><span class="s-sub">S</span> + <span class="s-mod">may/might</span> + <span class="s-verb">have</span> + <span class="s-verb">V3/ed</span></p>
+        <p class="en">You <span class="s-mod">might</span> <span class="s-verb">have left</span> it at work. · She <span class="s-mod">may</span> <span class="s-verb">have been</span> asleep.</p>
+        <p class="vi">Có thể bạn đã để nó ở chỗ làm. · Có lẽ lúc đó cô ấy đang ngủ.</p>
+        <p style="margin-bottom:0;"><span class="chip">Phủ định: may/might not have + V3/ed</span><span class="chip">She might not have known.</span></p>
+      </div>
+
+      <div class="card soft">
+        <h3 style="margin-top:0;">⚖️ Sơ đồ đối chiếu nhanh</h3>
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead><tr><th>Mốc thời gian</th><th>Cấu trúc</th><th>Ví dụ</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="Mốc thời gian">Hiện tại / tương lai</td>
+                <td data-label="Cấu trúc">may/might + V</td>
+                <td data-label="Ví dụ">It <strong>may be</strong> true.</td>
+              </tr>
+              <tr>
+                <td data-label="Mốc thời gian">Đang diễn ra</td>
+                <td data-label="Cấu trúc">may/might + be + V-ing</td>
+                <td data-label="Ví dụ">He <strong>might be having</strong> lunch.</td>
+              </tr>
+              <tr>
+                <td data-label="Mốc thời gian">Quá khứ</td>
+                <td data-label="Cấu trúc">may/might + have + V3/ed</td>
+                <td data-label="Ví dụ">She <strong>may have been</strong> asleep.</td>
+              </tr>
+              <tr>
+                <td data-label="Mốc thời gian">Quá khứ (đang diễn ra)</td>
+                <td data-label="Cấu trúc">may/might + have been + V-ing</td>
+                <td data-label="Ví dụ">He <strong>may not have been feeling</strong> well.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-bottom:0;">Nhắc lại: việc chọn cấu trúc phụ thuộc vào <strong>ý nghĩa người nói muốn diễn đạt</strong>, không chỉ vào mốc thời gian. Ví dụ, <em>may be</em> cũng có thể dùng cho tương lai gần: <em>I may be late tomorrow.</em></p>
+      </div>
+    </section>
+
+    <!-- ============ 7. GUIDED PRACTICE ============ -->
+    <section class="screen" id="s-guided">
+      <h2>🧭 Guided Practice – Luyện tập có hướng dẫn</h2>
+      <p class="vi">Làm từng câu một. Chọn đáp án rồi bấm <strong>Submit Answer</strong> để xem kết quả và giải thích. Đáp án chỉ hiện ra sau khi bạn trả lời.</p>
+      <div id="guidedArea"></div>
+    </section>
+
+    <!-- ============ 8. EXERCISES ============ -->
+    <section class="screen" id="s-exercises">
+      <h2>✍️ Original Exercises – Bài tập gốc 29.1, 29.2, 29.3</h2>
+      <p class="vi">Điền câu trả lời vào ô trống rồi bấm <strong>Kiểm tra</strong> ở cuối mỗi bài. Hệ thống chấp nhận những cách viết tương đương hợp lý.</p>
+      <div id="exercisesArea"></div>
+    </section>
+
+    <!-- ============ 9. ANSWER KEY ============ -->
+    <section class="screen" id="s-answerkey">
+      <h2>🔑 Answer Key &amp; Detailed Explanations</h2>
+      <div class="card soft">
+        <span class="badge badge-teacher">Teacher Area · Khu vực giáo viên</span>
+        <p style="margin-top:8px;">Phần này dành cho giáo viên. Học sinh không nên mở trước khi hoàn thành bài tập.</p>
+        <div class="btn-row">
+          <button class="btn" id="akToggle">👁 Show Answers</button>
+          <button class="btn secondary" id="akHide">🙈 Hide Answers</button>
+        </div>
+      </div>
+      <div id="answerKeyArea"></div>
+    </section>
+
+    <!-- ============ 10. COMMUNICATIVE PRACTICE ============ -->
+    <section class="screen" id="s-communicative">
+      <h2>💬 Communicative Practice – Thực hành giao tiếp</h2>
+      <p class="vi">Giáo viên cho học sinh làm việc theo cặp / nhóm, sau đó bấm nút để hiện gợi ý và câu trả lời mẫu.</p>
+
+      <div class="act-card">
+        <span class="badge badge-student">Activity 1</span>
+        <h3 style="margin-top:6px;">Guess the Situation</h3>
+        <p class="vi">Học sinh đưa ra <strong>ít nhất hai khả năng</strong> bằng <em>may</em> hoặc <em>might</em> cho mỗi tình huống.</p>
+
+        <div class="situation">
+          <strong>Situation 1:</strong> Someone is not answering their phone.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c1">Hiện gợi ý</button></div>
+          <div class="reveal" id="c1">
+            <strong>Gợi ý:</strong> He <strong>might be sleeping</strong>. He <strong>may be driving</strong>. He <strong>might not have</strong> his phone with him. He <strong>may be having</strong> a meeting.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Situation 2:</strong> The lights in the office are still on at 10 p.m.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c2">Hiện gợi ý</button></div>
+          <div class="reveal" id="c2">
+            <strong>Gợi ý:</strong> Someone <strong>may be working</strong> late. Somebody <strong>might have forgotten</strong> to turn them off. The cleaner <strong>might be cleaning</strong> the room.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Situation 3:</strong> Your friend looks very tired today.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c3">Hiện gợi ý</button></div>
+          <div class="reveal" id="c3">
+            <strong>Gợi ý:</strong> She <strong>may not have slept</strong> well last night. She <strong>might be working</strong> too hard. She <strong>may be ill</strong>.
+          </div>
+        </div>
+      </div>
+
+      <div class="act-card">
+        <span class="badge badge-student">Activity 2</span>
+        <h3 style="margin-top:6px;">What Might Have Happened?</h3>
+        <p class="vi">Học sinh dự đoán nguyên nhân bằng <em>may/might have + V3/ed</em>.</p>
+
+        <div class="situation">
+          <strong>Situation 1:</strong> Tom didn't come to class yesterday.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c4">Hiện gợi ý</button></div>
+          <div class="reveal" id="c4">
+            He <strong>might have been</strong> ill. He <strong>may have forgotten</strong> about the class. He <strong>might not have known</strong> that we had a lesson.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Situation 2:</strong> The ground is wet this morning.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c5">Hiện gợi ý</button></div>
+          <div class="reveal" id="c5">
+            It <strong>may have rained</strong> last night. Someone <strong>might have washed</strong> their car here. A water pipe <strong>might have broken</strong>.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Situation 3:</strong> Anna is very happy today.
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c6">Hiện gợi ý</button></div>
+          <div class="reveal" id="c6">
+            She <strong>may have received</strong> good news. She <strong>might have passed</strong> her exam. She <strong>might have got</strong> a new job.
+          </div>
+        </div>
+      </div>
+
+      <div class="act-card">
+        <span class="badge badge-student">Activity 3</span>
+        <h3 style="margin-top:6px;">Choose the Correct Meaning</h3>
+        <p class="vi">Phân biệt <strong>khả năng chưa chắc chắn</strong> (might not have) và <strong>sự việc không thể xảy ra</strong> (couldn't have).</p>
+
+        <div class="situation">
+          <strong>Câu:</strong> "Peter <em>couldn't have taken</em> your book. He was with me all afternoon."
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c7">Hiện câu trả lời</button></div>
+          <div class="reveal" id="c7">
+            <strong>Nghĩa:</strong> Peter <em>không thể nào</em> đã lấy sách của bạn. Anh ấy ở cạnh tôi suốt cả buổi chiều.<br>
+            → Người nói <strong>loại trừ hoàn toàn</strong> khả năng Peter lấy sách, vì có bằng chứng.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Câu:</strong> "I don't know why Peter hasn't given the book back. He <em>might not have finished</em> reading it."
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c8">Hiện câu trả lời</button></div>
+          <div class="reveal" id="c8">
+            <strong>Nghĩa:</strong> Tôi không biết tại sao Peter chưa trả sách. Có thể anh ấy vẫn chưa đọc xong.<br>
+            → Người nói <strong>không chắc</strong>: có thể chưa đọc xong, mà cũng có thể vì lý do khác.
+          </div>
+        </div>
+
+        <div class="situation">
+          <strong>Câu:</strong> "She <em>might not have seen</em> my message" <em>vs</em> "She <em>couldn't have seen</em> my message."
+          <div class="btn-row"><button class="btn ghost small" data-reveal="c9">Hiện câu trả lời</button></div>
+          <div class="reveal" id="c9">
+            • <strong>might not have seen</strong> = Có thể cô ấy đã không thấy tin nhắn của tôi (chưa chắc chắn).<br>
+            • <strong>couldn't have seen</strong> = Cô ấy không thể nào đã thấy tin nhắn của tôi (người nói chắc chắn điều đó là không thể).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 11. FINAL QUIZ ============ -->
+    <section class="screen" id="s-quiz">
+      <h2>🏁 Final Quiz – Bài kiểm tra tổng kết (15 câu)</h2>
+      <p class="vi">Chọn đáp án đúng nhất cho mỗi câu. Sau khi làm hết, bấm <strong>Nộp bài</strong> để xem điểm và giải thích.</p>
+      <div id="quizArea"></div>
+      <div class="btn-row" style="margin-top:16px;">
+        <button class="btn green" id="quizSubmit">✅ Nộp bài</button>
+        <button class="btn secondary" id="quizReset">🔄 Làm lại</button>
+      </div>
+      <div id="quizResult"></div>
+    </section>
+
+    <!-- ============ 12. LESSON SUMMARY ============ -->
+    <section class="screen" id="s-final">
+      <h2>📌 Lesson Summary – Tổng kết bài học</h2>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Các cấu trúc quan trọng</h3>
+        <div class="table-wrap">
+          <table class="grammar">
+            <thead><tr><th>Cấu trúc</th><th>Dùng để</th><th>Ví dụ</th></tr></thead>
+            <tbody>
+              <tr><td data-label="Cấu trúc">may/might + V</td><td data-label="Dùng để">Khả năng ở hiện tại / tương lai</td><td data-label="Ví dụ">She might know.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might + be + adj/noun</td><td data-label="Dùng để">Có lẽ đang ở trạng thái nào đó</td><td data-label="Ví dụ">She may be tired.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might + be + V-ing</td><td data-label="Dùng để">Có lẽ đang làm gì</td><td data-label="Ví dụ">He might be sleeping.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might not + V</td><td data-label="Dùng để">Có lẽ không xảy ra</td><td data-label="Ví dụ">She may not know.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might + have + V3/ed</td><td data-label="Dùng để">Suy đoán về quá khứ</td><td data-label="Ví dụ">She may have forgotten.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might + have been + V-ing</td><td data-label="Dùng để">Có lẽ đã đang làm gì</td><td data-label="Ví dụ">He might have been sleeping.</td></tr>
+              <tr><td data-label="Cấu trúc">may/might not have + V3/ed</td><td data-label="Dùng để">Có thể đã không làm gì (chưa chắc)</td><td data-label="Ví dụ">She might not have received it.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">⚠️ Những lỗi học sinh thường mắc</h3>
+        <ul>
+          <li>❌ <em>It maybe true.</em> → ✅ <em>It <strong>may be</strong> true.</em> <span class="vi">(may be = 2 từ, là động từ)</span></li>
+          <li>❌ <em>She may knows.</em> → ✅ <em>She <strong>may know</strong>.</em> <span class="vi">(sau may/might không chia động từ)</span></li>
+          <li>❌ <em>He might be have lunch.</em> → ✅ <em>He might be <strong>having</strong> lunch.</em></li>
+          <li>❌ <em>You may have leave it.</em> → ✅ <em>You may have <strong>left</strong> it.</em> <span class="vi">(phải dùng V3/ed)</span></li>
+          <li>❌ Dùng <em>couldn't have</em> thay cho <em>might not have</em> khi người nói chỉ muốn nói "có lẽ đã không…".</li>
+        </ul>
+      </div>
+
+      <div class="card soft">
+        <h3 style="margin-top:0;">🔍 Phân biệt nhanh</h3>
+        <p><strong>may be vs maybe</strong></p>
+        <ul>
+          <li><strong>may be</strong> (2 từ) = may + be → <em>It may be true.</em></li>
+          <li><strong>maybe</strong> (1 từ) = perhaps, là trạng từ → <em>Maybe. I'm not sure.</em></li>
+        </ul>
+        <p><strong>Suy đoán hiện tại vs suy đoán quá khứ</strong></p>
+        <ul>
+          <li>Hiện tại: <em>He may be at home.</em> (Có lẽ bây giờ anh ấy ở nhà.)</li>
+          <li>Quá khứ: <em>He may have been at home.</em> (Có lẽ lúc đó anh ấy đã ở nhà.)</li>
+        </ul>
+        <p><strong>might not have vs couldn't have</strong></p>
+        <ul>
+          <li><em>might not have + V3/ed</em> = có thể đã không… (vẫn còn khả năng ngược lại).</li>
+          <li><em>couldn't have + V3/ed</em> = không thể nào đã… (loại bỏ hoàn toàn khả năng).</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">✅ What I have learned</h3>
+        <div id="finalChecklist"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="reviewBtn">📖 Review Lesson</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ================= FOOTER NAV ================= -->
+<div class="footer-nav">
+  <button class="btn secondary" id="backBtn">◀ Back</button>
+  <button class="btn" id="nextBtn">Next ▶</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   UNIT 29 – MAY AND MIGHT 1 · Lesson Engine
+   ============================================================ */
+
+/* ---------- 1. SECTIONS ---------- */
+const SECTIONS = [
+  {id:'s-intro',         nav:'Giới thiệu bài học'},
+  {id:'s-objectives',    nav:'Mục tiêu học tập'},
+  {id:'s-theoryA',       nav:'A – May / Might'},
+  {id:'s-theoryB',       nav:'B – May / Might have + V3/ed'},
+  {id:'s-theoryC',       nav:'C – Could / couldn\'t have'},
+  {id:'s-summary',       nav:'Sơ đồ tổng kết ngữ pháp'},
+  {id:'s-guided',        nav:'Guided Practice'},
+  {id:'s-exercises',     nav:'Bài tập gốc 29.1 – 29.3'},
+  {id:'s-answerkey',     nav:'Answer Key (Giáo viên)'},
+  {id:'s-communicative', nav:'Thực hành giao tiếp'},
+  {id:'s-quiz',          nav:'Final Quiz (15 câu)'},
+  {id:'s-final',         nav:'Tổng kết bài học'}
+];
+
+/* ---------- 2. STATE + STORAGE ---------- */
+const STORAGE_KEY = 'unit29_may_might_lesson_v1';
+let state = {
+  section: 0,
+  objectives: {},
+  guided: { idx: 0, answers: {}, done: false },
+  ex: {},
+  quiz: { order: null, answers: {}, submitted: false, score: null },
+  finalCheck: {}
+};
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      const p = JSON.parse(raw);
+      state = Object.assign(state, p);
+      state.guided = Object.assign({idx:0, answers:{}, done:false}, p.guided || {});
+      state.quiz  = Object.assign({order:null, answers:{}, submitted:false, score:null}, p.quiz || {});
+    }
+  }catch(e){ /* localStorage không khả dụng → dùng mặc định */ }
+}
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tm);
+  t._tm = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---------- 3. NAVIGATION ---------- */
+const navList = document.getElementById('navList');
+function buildNav(){
+  navList.innerHTML = '';
+  SECTIONS.forEach((s,i)=>{
+    const b = document.createElement('button');
+    b.className = 'nav-item' + (i===state.section?' active':'');
+    b.innerHTML = '<span class="nav-num">'+(i+1)+'</span><span>'+s.nav+'</span>';
+    b.addEventListener('click', ()=>{ showSection(i); closeSidebar(); });
+    navList.appendChild(b);
+  });
+}
+function showSection(i){
+  if(i<0) i = 0;
+  if(i>SECTIONS.length-1) i = SECTIONS.length-1;
+  state.section = i;
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  document.getElementById(SECTIONS[i].id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach((el,idx)=>{
+    el.classList.toggle('active', idx===i);
+  });
+  document.getElementById('progressBar').style.width =
+    (((i+1)/SECTIONS.length)*100).toFixed(1) + '%';
+  document.getElementById('backBtn').disabled = (i===0);
+  document.getElementById('nextBtn').disabled = (i===SECTIONS.length-1);
+  window.scrollTo({top:0, behavior:'smooth'});
+  saveState();
+}
+document.getElementById('backBtn').addEventListener('click',()=>showSection(state.section-1));
+document.getElementById('nextBtn').addEventListener('click',()=>showSection(state.section+1));
+document.getElementById('startBtn').addEventListener('click',()=>showSection(1));
+
+/* Sidebar */
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+function openSidebar(){ sidebar.classList.add('open'); overlay.classList.add('show'); }
+function closeSidebar(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+document.getElementById('menuBtn').addEventListener('click',()=>{
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+overlay.addEventListener('click', closeSidebar);
+
+/* Fullscreen */
+document.getElementById('fsBtn').addEventListener('click', ()=>{
+  const el = document.documentElement;
+  try{
+    if(!document.fullscreenElement && !document.webkitFullscreenElement){
+      if(el.requestFullscreen) el.requestFullscreen();
+      else if(el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else toast('Trình duyệt này không hỗ trợ chế độ toàn màn hình.');
+    }else{
+      if(document.exitFullscreen) document.exitFullscreen();
+      else if(document.webkitExitFullscreen) document.webkitExitFullscreen();
+    }
+  }catch(e){ toast('Không thể bật toàn màn hình trên thiết bị này.'); }
+});
+
+/* Reset */
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  if(confirm('Xóa toàn bộ tiến độ học tập và kết quả bài tập trên thiết bị này?')){
+    try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+    location.reload();
+  }
+});
+
+/* ---------- 4. OBJECTIVES ---------- */
+const OBJECTIVES = [
+  ['Hiểu cách sử dụng may và might để diễn tả khả năng xảy ra.',
+   'Hiểu rằng may/might dùng khi người nói KHÔNG chắc chắn về một sự việc.'],
+  ['Phân biệt may/might + V, may/might be + V-ing và may/might have + V3/ed.',
+   'Nhận ra sự khác nhau giữa khả năng ở hiện tại, hành động đang diễn ra và suy đoán về quá khứ.'],
+  ['Sử dụng may not và might not để diễn tả khả năng phủ định.',
+   'Đặt phủ định đúng vị trí: may/might + not + V.'],
+  ['Phân biệt may be với maybe.',
+   'may be = 2 từ (động từ); maybe = 1 từ (trạng từ, nghĩa là "có lẽ").'],
+  ['Phân biệt could have với might not have và couldn\'t have.',
+   'couldn\'t have = không thể nào đã…; might not have = có thể đã không… (chưa chắc chắn).'],
+  ['Vận dụng kiến thức vào các tình huống giao tiếp và bài tập.',
+   'Đưa ra phỏng đoán, dự đoán nguyên nhân và chọn cấu trúc phù hợp theo ngữ cảnh.']
+];
+function buildObjectives(){
+  const box = document.getElementById('objList');
+  box.innerHTML = '';
+  OBJECTIVES.forEach((o,i)=>{
+    const div = document.createElement('div');
+    div.className = 'obj-item' + (state.objectives[i] ? ' done' : '');
+    div.innerHTML = '<div class="obj-check">'+(state.objectives[i]?'✓':'')+'</div>'+
+                    '<div class="obj-text">'+(i+1)+'. '+o[0]+'<span class="vi">'+o[1]+'</span></div>';
+    div.addEventListener('click',()=>{
+      state.objectives[i] = !state.objectives[i];
+      saveState();
+      buildObjectives();
+    });
+    box.appendChild(div);
+  });
+}
+
+/* ---------- 5. REVEAL BUTTONS ---------- */
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('[data-reveal]');
+  if(!btn) return;
+  const target = document.getElementById(btn.dataset.reveal);
+  if(target){
+    target.classList.toggle('show');
+    btn.textContent = target.classList.contains('show') ? 'Ẩn gợi ý' : 'Hiện gợi ý';
+  }
+});
+
+/* ---------- 6. GUIDED PRACTICE ---------- */
+const GUIDED = [
+  {
+    q: "Where's Ben? He ______ in his office.",
+    options: ["may be", "may is", "maybe", "may being"],
+    answer: 0,
+    explain: "Sau may/might phải là động từ nguyên mẫu → <b>may be</b>. \"maybe\" (1 từ) là trạng từ, không thể làm động từ trong câu. \"may is\" sai vì không chia động từ sau may. \"may being\" sai vì thiếu be."
+  },
+  {
+    q: "She ______ know the answer. I'm not sure.",
+    options: ["may not", "may not be", "maybe not", "not may"],
+    answer: 0,
+    explain: "Dạng phủ định là <b>may not + V (nguyên mẫu)</b>. Ở đây động từ chính là <i>know</i>, nên chỉ cần <b>may not know</b>. Không thêm <i>be</i> vì không có tính từ / danh từ / V-ing theo sau."
+  },
+  {
+    q: "'Is it true?' '______. I'm not sure.'",
+    options: ["Maybe", "May be", "Might be", "May"],
+    answer: 0,
+    explain: "Khi đứng một mình để trả lời, ta dùng trạng từ <b>Maybe</b> (= perhaps, có lẽ). \"May be\" là động từ nên không thể đứng một mình làm câu trả lời."
+  },
+  {
+    q: "Why doesn't George answer his phone? He ______.",
+    options: ["might be driving", "might drive", "might have driven", "might be drive"],
+    answer: 0,
+    explain: "Hành động lái xe có thể <b>đang diễn ra</b> ngay lúc này → <b>might + be + V-ing</b> = <i>might be driving</i>. \"might be drive\" sai vì sau be phải là V-ing."
+  },
+  {
+    q: "I can't find my phone. I ______ it at work.",
+    options: ["might leave", "might have left", "might be leaving", "might left"],
+    answer: 1,
+    explain: "Việc để quên điện thoại có thể đã xảy ra <b>trước thời điểm nói</b> → <b>might have + V3/ed</b> = <i>might have left</i> (leave – left – left)."
+  },
+  {
+    q: "Why wasn't Amy at the meeting yesterday? She ______ about it.",
+    options: ["might not know", "might not have known", "couldn't know", "must not know"],
+    answer: 1,
+    explain: "Cuộc họp đã diễn ra <b>hôm qua</b> → cần cấu trúc quá khứ: <b>might not have + V3/ed</b> = <i>might not have known</i> (= có thể cô ấy đã không biết)."
+  },
+  {
+    q: "Sarah ______ my message. Otherwise she would have replied.",
+    options: ["might not have received", "couldn't have received", "may not receive", "might not receive"],
+    answer: 1,
+    explain: "Vế sau \"Otherwise she would have replied\" cho thấy người nói <b>loại trừ hoàn toàn</b> khả năng Sarah nhận được tin nhắn → dùng <b>couldn't have + V3/ed</b>. <i>might not have received</i> chỉ nói \"có thể đã không nhận được\", không diễn tả được sự loại trừ."
+  },
+  {
+    q: "David was in such a bad mood yesterday. He ______ well.",
+    options: ["may not have been feeling", "may not be feeling", "couldn't have been feeling", "may not been feeling"],
+    answer: 0,
+    explain: "Trạng thái không khỏe <b>đang kéo dài</b> trong quá khứ → <b>may not have been + V-ing</b> = <i>may not have been feeling well</i>. \"may not be feeling\" là hiện tại, không khớp với <i>yesterday</i>."
+  },
+  {
+    q: "It's a strange story, but it ______ true.",
+    options: ["could be", "could have been", "couldn't be", "could been"],
+    answer: 0,
+    explain: "<b>could</b> có thể dùng giống may/might để diễn tả khả năng ở hiện tại: <i>it could be true</i> = có thể nó là thật. \"could been\" sai vì sau could phải là động từ nguyên mẫu."
+  },
+  {
+    q: "Look! The lights are on. Someone ______ in the office.",
+    options: ["may be working", "may work", "may have worked", "may be work"],
+    answer: 0,
+    explain: "Đèn đang bật <b>ngay lúc này</b>, nên ai đó có thể <b>đang</b> làm việc → <b>may + be + V-ing</b> = <i>may be working</i>."
+  }
+];
+
+const guidedArea = document.getElementById('guidedArea');
+function renderGuided(){
+  const i = state.guided.idx;
+  if(i >= GUIDED.length){
+    guidedArea.innerHTML = '<div class="card"><h3 style="margin-top:0;">🎉 Hoàn thành Guided Practice!</h3>'+
+      '<p>Bạn đã làm hết '+GUIDED.length+' câu luyện tập có hướng dẫn. Hãy chuyển sang phần <strong>Bài tập gốc 29.1 – 29.3</strong> hoặc <strong>Final Quiz</strong>.</p>'+
+      '<div class="btn-row"><button class="btn secondary" id="guidedRedo">🔄 Làm lại từ đầu</button></div></div>';
+    const rb = document.getElementById('guidedRedo');
+    if(rb) rb.addEventListener('click',()=>{
+      state.guided = {idx:0, answers:{}, done:false}; saveState(); renderGuided();
+    });
+    return;
+  }
+  const q = GUIDED[i];
+  const chosen = state.guided.answers[i];
+  const answered = chosen !== undefined;
+  let html = '<div class="q-box">';
+  html += '<div class="q-index">Câu '+(i+1)+' / '+GUIDED.length+'</div>';
+  html += '<div class="q-text">'+q.q+'</div>';
+  html += '<div class="opts" id="guidedOpts">';
+  q.options.forEach((o,k)=>{
+    let cls = 'opt';
+    if(answered){
+      if(k === q.answer) cls += ' correct';
+      else if(k === chosen) cls += ' wrong';
+    }else if(k === chosen){ cls += ' selected'; }
+    html += '<button class="'+cls+'" data-k="'+k+'"'+(answered?' disabled':'')+'>'+
+            '<span class="letter">'+String.fromCharCode(65+k)+'</span><span>'+o+'</span></button>';
+  });
+  html += '</div>';
+  html += '<div class="feedback'+(answered?' show '+(chosen===q.answer?'ok':'no'):'')+'" id="guidedFb">';
+  if(answered){
+    html += '<div class="fb-title">'+(chosen===q.answer?'✅ Chính xác!':'❌ Chưa đúng.')+'</div>'+
+            '<div>Đáp án đúng: <b>'+String.fromCharCode(65+q.answer)+'. '+q.options[q.answer]+'</b></div>'+
+            '<div style="margin-top:6px;">'+q.explain+'</div>';
+  }
+  html += '</div>';
+  html += '<div class="btn-row">';
+  if(!answered){
+    html += '<button class="btn" id="guidedSubmit" disabled>Submit Answer</button>';
+  }else{
+    html += '<button class="btn" id="guidedNext">'+(i===GUIDED.length-1?'Xem kết quả ▶':'Next Question ▶')+'</button>';
+  }
+  html += '</div></div>';
+  guidedArea.innerHTML = html;
+
+  if(!answered){
+    guidedArea.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        guidedArea.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        document.getElementById('guidedSubmit').disabled = false;
+      });
+    });
+    const sb = document.getElementById('guidedSubmit');
+    sb.addEventListener('click',()=>{
+      const sel = guidedArea.querySelector('.opt.selected');
+      if(!sel) return;
+      state.guided.answers[i] = parseInt(sel.dataset.k,10);
+      saveState();
+      renderGuided();
+    });
+  }else{
+    const nb = document.getElementById('guidedNext');
+    nb.addEventListener('click',()=>{
+      state.guided.idx = i+1;
+      if(i+1 >= GUIDED.length) state.guided.done = true;
+      saveState();
+      renderGuided();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  }
+}
+
+/* ---------- 7. ORIGINAL EXERCISES ---------- */
+const EX_DATA = {
+  "29.1": {
+    title: "Exercise 29.1 – Complete the sentences",
+    instruction: "Hoàn thành các câu sau bằng những cụm từ cho sẵn trong khung.",
+    bank: ["might be in her room", "might know", "might be Brazilian", "may not be possible",
+           "may be Tom's", "might be driving", "might have one", "may not be feeling well"],
+    items: [
+      {n:1, before:"Helen ", after:".", given:"might be in her room",
+       hint:"Câu này đã được cho sẵn trong đề bài."},
+      {n:2, before:"A: Is there a bookshop near here?\nB: I'm not sure, but ask Anna. She ", after:".",
+       answers:["might know"],
+       hint:"Might + động từ nguyên mẫu <b>know</b> diễn tả khả năng Anna biết thông tin."},
+      {n:3, before:"A: Where are those people from?\nB: I don't know. They ", after:".",
+       answers:["might be brazilian"],
+       hint:"Might + be + tính từ chỉ quốc tịch <b>Brazilian</b>."},
+      {n:4, before:"A: I hope you can help me.\nB: I'll try, but it ", after:".",
+       answers:["may not be possible"],
+       hint:"May not diễn tả khả năng điều gì đó không thể thực hiện được."},
+      {n:5, before:"A: Whose phone is this?\nB: It's not mine. It ", after:".",
+       answers:["may be tom's","may be tom's phone","may be tom’s","may be tom’s phone"],
+       hint:"<b>Tom's</b> ở đây là đại từ sở hữu, viết tắt của <i>Tom's phone</i>. Không cần lặp lại danh từ <i>phone</i>."},
+      {n:6, before:"A: Why doesn't George answer his phone?\nB: He ", after:".",
+       answers:["might be driving"],
+       hint:"Might + be + V-ing diễn tả một hành động có thể đang diễn ra ở hiện tại."},
+      {n:7, before:"A: Do you know anyone who has a key to this cupboard?\nB: Rachel ", after:", but I'm not sure.",
+       answers:["might have one"],
+       hint:"<b>One</b> thay thế cho danh từ số ít <i>a key</i>. Ở đây <i>might have</i> nghĩa là \"có thể có\", KHÔNG phải cấu trúc suy đoán quá khứ might have + V3/ed."},
+      {n:8, before:"A: Gary is in a strange mood today.\nB: Yes, he is. He ", after:".",
+       answers:["may not be feeling well"],
+       hint:"May not + be + V-ing diễn tả khả năng một trạng thái đang diễn ra không tốt ở hiện tại."}
+    ]
+  },
+  "29.2": {
+    title: "Exercise 29.2 – Complete each sentence using the verb in brackets",
+    instruction: "Chia động từ trong ngoặc sao cho phù hợp với cấu trúc may/might.",
+    bank: null,
+    items: [
+      {n:1, before:"He might be ", after:" lunch. (have)", answers:["having"],
+       hint:"Might + be + V-ing diễn tả hành động đang xảy ra. <i>Have lunch</i> chuyển thành <i>be having lunch</i>."},
+      {n:2, before:"It may ", after:" her brother. (be)", answers:["be"],
+       hint:"Sau <i>may</i> là động từ nguyên mẫu không có <i>to</i>: <b>may be</b>."},
+      {n:3, before:"She may not ", after:" yet. (arrive)", answers:["have arrived"],
+       hint:"<i>Yet</i> thường dùng trong câu phủ định để nói về việc chưa xảy ra tính đến hiện tại. Cấu trúc <b>may not have + V3/ed</b>."},
+      {n:4, before:"He might ", after:" outside. (wait)", answers:["be waiting"],
+       hint:"Hành động chờ có thể đang diễn ra tại thời điểm nói → <b>might + be + V-ing</b>."},
+      {n:5, before:"Sam may ", after:" him. (tell)", answers:["have told"],
+       hint:"Việc Sam nói với John xảy ra trước thời điểm John biết tin → <b>may + have + V3</b>. Tell – told – told."},
+      {n:6, before:"He might ", after:" home. (go)", answers:["have gone"],
+       hint:"Suy đoán về hành động đã xảy ra trong quá khứ. Go – went – gone."},
+      {n:7, before:"She might ", after:" TV. (watch)", answers:["be watching"],
+       hint:"Might + be + V-ing diễn tả hành động có thể đang diễn ra."},
+      {n:8, before:"He may ", after:" a younger sister. (have)", answers:["have"],
+       hint:"<i>Have</i> mang nghĩa sở hữu ở hiện tại. Sau <i>may</i> dùng động từ nguyên mẫu <b>have</b>, không dùng <i>has</i>."},
+      {n:9, before:"You may ", after:" it in the restaurant last night. (leave)", answers:["have left"],
+       hint:"<i>Last night</i> chỉ thời gian quá khứ. Cấu trúc suy đoán về quá khứ: <b>may + have + V3</b>. Leave – left – left."},
+      {n:10, before:"He might not ", after:" the doorbell. (hear)", answers:["have heard"],
+       hint:"<b>Might not have + V3</b> diễn tả khả năng một việc đã không xảy ra. Hear – heard – heard."},
+      {n:11, before:"She may ", after:". She forgets everything. (forget)", answers:["have forgotten"],
+       hint:"Hành động quên có thể đã xảy ra trước thời điểm nói. Forget – forgot – forgotten."}
+    ]
+  },
+  "29.3": {
+    title: "Exercise 29.3 – Might not have … or couldn't have …",
+    instruction: "Chọn cấu trúc phù hợp để diễn tả khả năng không xảy ra hoặc sự không thể xảy ra trong quá khứ.",
+    bank: null,
+    items: [
+      {n:1, before:"A: Why wasn't Amy at the meeting yesterday?\nB: She ", after:" about it. (know)",
+       given:"might not have known",
+       hint:"Câu này đã được cho sẵn. Người nói cho rằng Amy có thể không biết, nhưng không khẳng định chắc chắn."},
+      {n:2, before:"Tom didn't come to the party. He ", after:" to come. (not / want)",
+       answers:["might not have wanted"],
+       hint:"Đây là một khả năng chưa chắc chắn → <b>might not have + V3/ed</b>. Want – wanted – wanted."},
+      {n:3, before:"The police say it ", after:" an accident. It was deliberate. (not / be)",
+       answers:["couldn't have been"],
+       hint:"<i>It was deliberate</i> cho thấy sự việc là cố ý, nên người nói phủ nhận hoàn toàn khả năng đó là tai nạn → <b>couldn't have been</b>."},
+      {n:4, before:"Mike said he tried to find me yesterday, but he ", after:" very hard. I was in my office all day. (not / try)",
+       answers:["couldn't have tried"],
+       hint:"Người nói có mặt ở văn phòng suốt ngày → loại trừ hoàn toàn khả năng Mike đã cố gắng nhiều → <b>couldn't have tried</b>."},
+      {n:5, before:"The man ", after:" American. He might have been Canadian. (not / be)",
+       answers:["might not have been american"],
+       hint:"Người nói không chắc về quốc tịch của người đàn ông → dùng <b>might not have been</b>, KHÔNG dùng <i>couldn't have been</i> vì chưa có căn cứ loại trừ hoàn toàn."}
+    ]
+  }
+};
+
+function normalize(s){
+  return String(s||'')
+    .toLowerCase()
+    .replace(/[’‘]/g,"'")
+    .replace(/\s+/g,' ')
+    .replace(/[.!?,;]+$/,'')
+    .trim();
+}
+
+function buildExercises(){
+  const area = document.getElementById('exercisesArea');
+  area.innerHTML = '';
+  Object.keys(EX_DATA).forEach(key=>{
+    const ex = EX_DATA[key];
+    const card = document.createElement('div');
+    card.className = 'card';
+    let html = '<span class="badge badge-original">Original Exercise</span>';
+    html += '<h3 style="margin-top:6px;">'+ex.title+'</h3>';
+    html += '<p class="vi">'+ex.instruction+'</p>';
+    if(ex.bank){
+      html += '<div class="bank"><strong>Word bank:</strong><br>'+
+              ex.bank.map(w=>'<span class="chip">'+w+'</span>').join('')+'</div>';
+    }
+    html += '<div id="ex-'+key.replace('.','_')+'">';
+    ex.items.forEach(it=>{
+      const uid = key+'_'+it.n;
+      const before = it.before.replace(/\n/g,'<br>');
+      const after = it.after.replace(/\n/g,'<br>');
+      html += '<div class="ex-item" data-uid="'+uid+'">';
+      html += '<div class="ex-line"><span class="ex-num">'+it.n+'.</span> '+before;
+      if(it.given){
+        html += '<input class="blank given" type="text" value="'+it.given+'" readonly tabindex="-1">';
+      }else{
+        const saved = (state.ex[uid] !== undefined) ? state.ex[uid] : '';
+        html += '<input class="blank" type="text" data-uid="'+uid+'" value="'+saved.replace(/"/g,'&quot;')+'" '+
+                'placeholder="..." autocomplete="off" spellcheck="false">';
+      }
+      html += after + '</div>';
+      html += '<div class="ex-explain" id="expl-'+uid+'"></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '<div class="btn-row">'+
+            '<button class="btn" data-check="'+key+'">✔ Kiểm tra</button>'+
+            '<button class="btn secondary" data-showall="'+key+'">👁 Xem đáp án</button>'+
+            '<button class="btn ghost" data-clear="'+key+'">🧹 Xóa</button>'+
+            '</div>';
+    html += '<div class="ex-result" id="res-'+key.replace('.','_')+'"></div>';
+    card.innerHTML = html;
+    area.appendChild(card);
+  });
+
+  // lưu khi gõ
+  area.querySelectorAll('input.blank:not(.given)').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      state.ex[inp.dataset.uid] = inp.value;
+      saveState();
+    });
+  });
+
+  // nút kiểm tra
+  area.querySelectorAll('[data-check]').forEach(btn=>{
+    btn.addEventListener('click',()=>checkExercise(btn.dataset.check));
+  });
+  area.querySelectorAll('[data-showall]').forEach(btn=>{
+    btn.addEventListener('click',()=>showAllExercise(btn.dataset.showall));
+  });
+  area.querySelectorAll('[data-clear]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const key = btn.dataset.clear;
+      EX_DATA[key].items.forEach(it=>{
+        const uid = key+'_'+it.n;
+        delete state.ex[uid];
+        const inp = area.querySelector('input[data-uid="'+uid+'"]');
+        if(inp){ inp.value=''; inp.classList.remove('ok','bad'); }
+        const ex = document.getElementById('expl-'+uid);
+        if(ex){ ex.className='ex-explain'; ex.innerHTML=''; }
+      });
+      const res = document.getElementById('res-'+key.replace('.','_'));
+      if(res){ res.className='ex-result'; res.innerHTML=''; }
+      saveState();
+      toast('Đã xóa câu trả lời của bài '+key);
+    });
+  });
+}
+
+function checkExercise(key){
+  const ex = EX_DATA[key];
+  let correct = 0, total = 0;
+  ex.items.forEach(it=>{
+    if(it.given) return;
+    total++;
+    const uid = key+'_'+it.n;
+    const inp = document.querySelector('input[data-uid="'+uid+'"]');
+    const expl = document.getElementById('expl-'+uid);
+    if(!inp) return;
+    const val = normalize(inp.value);
+    const accepted = (it.answers||[]).map(normalize);
+    const ok = val !== '' && accepted.indexOf(val) !== -1;
+    inp.classList.remove('ok','bad');
+    inp.classList.add(ok?'ok':'bad');
+    if(ok){
+      correct++;
+      expl.className = 'ex-explain ok show';
+      expl.innerHTML = '✅ <b>Chính xác!</b> '+it.hint;
+    }else{
+      expl.className = 'ex-explain bad show';
+      expl.innerHTML = '❌ <b>Chưa đúng.</b> Đáp án đúng: <b>'+(it.answers[0])+'</b>.<br>'+it.hint;
+    }
+  });
+  const res = document.getElementById('res-'+key.replace('.','_'));
+  const pct = total ? Math.round(correct/total*100) : 0;
+  res.className = 'ex-result show ' + (pct>=80 ? 'ok' : 'mid');
+  res.innerHTML = 'Kết quả bài '+key+': <b>'+correct+'/'+total+'</b> câu đúng ('+pct+'%). '+
+    (pct>=80 ? 'Làm rất tốt! 🎉' : 'Hãy xem lại phần giải thích màu đỏ và thử lại nhé.');
+}
+
+function showAllExercise(key){
+  const ex = EX_DATA[key];
+  ex.items.forEach(it=>{
+    if(it.given) return;
+    const uid = key+'_'+it.n;
+    const inp = document.querySelector('input[data-uid="'+uid+'"]');
+    const expl = document.getElementById('expl-'+uid);
+    if(inp){ inp.value = it.answers[0]; inp.classList.remove('bad'); inp.classList.add('ok'); }
+    if(expl){
+      expl.className = 'ex-explain info show';
+      expl.innerHTML = '📘 Đáp án: <b>'+it.answers[0]+'</b>. '+it.hint;
+    }
+    state.ex[uid] = it.answers[0];
+  });
+  saveState();
+  toast('Đã hiện đáp án bài '+key);
+}
+
+/* ---------- 8. ANSWER KEY (TEACHER) ---------- */
+const ANSWER_KEY_HTML = `
+<div class="ak-block" id="akBody">
+  <div class="card">
+    <span class="badge badge-teacher">Answer Key · Exercise 29.1</span>
+    <div class="ak-item"><div class="ak-en">1. Helen <span class="ak-ans">might be in her room</span>.</div>
+      <div class="ak-vi">Helen có thể đang ở trong phòng cô ấy. Đây là suy đoán về vị trí hiện tại. <em>(Câu này đã cho sẵn.)</em></div></div>
+    <div class="ak-item"><div class="ak-en">2. A: Is there a bookshop near here? B: I'm not sure, but ask Anna. She <span class="ak-ans">might know</span>.</div>
+      <div class="ak-vi">Tôi không chắc, nhưng hãy hỏi Anna. Có thể cô ấy biết. — <b>Might + động từ nguyên mẫu know</b> diễn tả khả năng Anna biết thông tin.</div></div>
+    <div class="ak-item"><div class="ak-en">3. A: Where are those people from? B: I don't know. They <span class="ak-ans">might be Brazilian</span>.</div>
+      <div class="ak-vi">Tôi không biết. Có thể họ là người Brazil. — <b>Might + be + tính từ chỉ quốc tịch</b>.</div></div>
+    <div class="ak-item"><div class="ak-en">4. A: I hope you can help me. B: I'll try, but it <span class="ak-ans">may not be possible</span>.</div>
+      <div class="ak-vi">Tôi sẽ cố gắng, nhưng có thể điều đó không khả thi. — <b>May not</b> diễn tả khả năng điều gì đó không thể thực hiện được.</div></div>
+    <div class="ak-item"><div class="ak-en">5. A: Whose phone is this? B: It's not mine. It <span class="ak-ans">may be Tom's</span>.</div>
+      <div class="ak-vi">Điện thoại này không phải của tôi. Có thể nó là của Tom. — <b>Tom's</b> là đại từ sở hữu, viết tắt của <i>Tom's phone</i>; không cần lặp lại danh từ <i>phone</i>.</div></div>
+    <div class="ak-item"><div class="ak-en">6. A: Why doesn't George answer his phone? B: He <span class="ak-ans">might be driving</span>.</div>
+      <div class="ak-vi">Có thể George đang lái xe. — <b>Might + be + V-ing</b> diễn tả hành động có thể đang diễn ra ở hiện tại.</div></div>
+    <div class="ak-item"><div class="ak-en">7. A: Do you know anyone who has a key to this cupboard? B: Rachel <span class="ak-ans">might have one</span>, but I'm not sure.</div>
+      <div class="ak-vi">Rachel có thể có một chiếc, nhưng tôi không chắc. — <b>One</b> thay thế cho danh từ số ít <i>a key</i>. <i>Might have</i> ở đây nghĩa là "có thể sở hữu", KHÔNG phải cấu trúc suy đoán quá khứ <i>might have + V3/ed</i>.</div></div>
+    <div class="ak-item"><div class="ak-en">8. A: Gary is in a strange mood today. B: Yes, he is. He <span class="ak-ans">may not be feeling well</span>.</div>
+      <div class="ak-vi">Đúng vậy. Có thể hôm nay anh ấy không được khỏe. — <b>May not + be + V-ing</b> diễn tả khả năng một trạng thái đang diễn ra không tốt ở hiện tại.</div></div>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-teacher">Answer Key · Exercise 29.2</span>
+    <div class="ak-item"><div class="ak-en">1. He might be <span class="ak-ans">having</span> lunch.</div>
+      <div class="ak-vi">Có thể Ben đang ăn trưa. — <b>Might + be + V-ing</b>. Nếu chỉ điền vào chỗ trống sau <i>might be</i>, đáp án cần viết là <b>having</b>.</div></div>
+    <div class="ak-item"><div class="ak-en">2. It may <span class="ak-ans">be</span> her brother.</div>
+      <div class="ak-vi">Có thể anh chàng đó là anh/em trai của cô ấy. — Sau <i>may</i> là động từ nguyên mẫu không có <i>to</i>: <b>may be</b>.</div></div>
+    <div class="ak-item"><div class="ak-en">3. She may not <span class="ak-ans">have arrived</span> yet.</div>
+      <div class="ak-vi">Có thể cô ấy vẫn chưa đến. — <i>Yet</i> thường dùng trong câu phủ định. Cấu trúc <b>may not have + V3/ed</b>. Chú ý: dùng <b>have arrived</b>, không dùng <i>arrive</i>.</div></div>
+    <div class="ak-item"><div class="ak-en">4. He might <span class="ak-ans">be waiting</span> outside.</div>
+      <div class="ak-vi">Có thể anh ấy đang đợi ở bên ngoài. — Hành động chờ có thể đang diễn ra tại thời điểm nói → <b>might + be + V-ing</b>.</div></div>
+    <div class="ak-item"><div class="ak-en">5. Sam may <span class="ak-ans">have told</span> him.</div>
+      <div class="ak-vi">Có thể Sam đã nói với anh ấy. — Việc Sam nói với John xảy ra trước thời điểm John biết tin → <b>may + have + V3</b>. Tell – told – told.</div></div>
+    <div class="ak-item"><div class="ak-en">6. He might <span class="ak-ans">have gone</span> home.</div>
+      <div class="ak-vi">Có thể anh ấy đã về nhà. — Suy đoán về hành động đã xảy ra trong quá khứ. Go – went – gone.</div></div>
+    <div class="ak-item"><div class="ak-en">7. She might <span class="ak-ans">be watching</span> TV.</div>
+      <div class="ak-vi">Có thể cô ấy đang xem TV. — <b>Might + be + V-ing</b> diễn tả hành động có thể đang diễn ra.</div></div>
+    <div class="ak-item"><div class="ak-en">8. He may <span class="ak-ans">have</span> a younger sister.</div>
+      <div class="ak-vi">Có thể cậu ấy có một em gái. — <i>Have</i> mang nghĩa sở hữu ở hiện tại. Sau <i>may</i> dùng động từ nguyên mẫu <b>have</b>, không dùng <i>has</i>.</div></div>
+    <div class="ak-item"><div class="ak-en">9. You may <span class="ak-ans">have left</span> it in the restaurant last night.</div>
+      <div class="ak-vi">Có thể tối qua bạn đã để quên nó ở nhà hàng. — <i>Last night</i> chỉ thời gian quá khứ → <b>may + have + V3</b>. Leave – left – left.</div></div>
+    <div class="ak-item"><div class="ak-en">10. He might not <span class="ak-ans">have heard</span> the doorbell.</div>
+      <div class="ak-vi">Có thể anh ấy đã không nghe thấy chuông cửa. — <b>Might not have + V3</b> diễn tả khả năng một việc đã không xảy ra. Hear – heard – heard.</div></div>
+    <div class="ak-item"><div class="ak-en">11. She may <span class="ak-ans">have forgotten</span>. She forgets everything.</div>
+      <div class="ak-vi">Có thể cô ấy đã quên mất. Cô ấy thường xuyên quên mọi thứ. — Hành động quên có thể đã xảy ra trước thời điểm nói. Forget – forgot – forgotten.</div></div>
+  </div>
+
+  <div class="card">
+    <span class="badge badge-teacher">Answer Key · Exercise 29.3</span>
+    <div class="ak-item"><div class="ak-en">1. She <span class="ak-ans">might not have known</span> about it.</div>
+      <div class="ak-vi">Có thể cô ấy đã không biết về cuộc họp. — Người nói cho rằng Amy có thể không biết, nhưng không khẳng định chắc chắn. <em>(Câu này đã cho sẵn.)</em></div></div>
+    <div class="ak-item"><div class="ak-en">2. He <span class="ak-ans">might not have wanted</span> to come.</div>
+      <div class="ak-vi">Có thể Tom đã không muốn đến. — Đây là một khả năng chưa chắc chắn. Want – wanted – wanted.</div></div>
+    <div class="ak-item"><div class="ak-en">3. The police say it <span class="ak-ans">couldn't have been</span> an accident. It was deliberate.</div>
+      <div class="ak-vi">Cảnh sát nói rằng vụ việc không thể nào là một tai nạn. Đó là hành động có chủ ý. — <i>It was deliberate</i> cho biết sự việc là cố ý, nên người nói phủ nhận hoàn toàn khả năng đó là tai nạn bằng <b>couldn't have been</b>.</div></div>
+    <div class="ak-item"><div class="ak-en">4. He <span class="ak-ans">couldn't have tried</span> very hard. I was in my office all day.</div>
+      <div class="ak-vi">Anh ấy không thể nào đã cố gắng tìm tôi một cách nghiêm túc. Tôi ở trong văn phòng cả ngày. — Người nói có mặt ở văn phòng suốt ngày nên loại trừ hoàn toàn khả năng Mike đã cố gắng nhiều. Try – tried – tried.</div></div>
+    <div class="ak-item"><div class="ak-en">5. He <span class="ak-ans">might not have been American</span>. (cũng có thể viết: <i>might have been …</i>, nhưng cần hoàn chỉnh ý)</div>
+      <div class="ak-vi">Có thể người đàn ông đó không phải người Mỹ. — Người nói không chắc về quốc tịch của người đàn ông. Đây là khả năng chưa được xác nhận, nên dùng <b>might not have been</b>, không dùng <i>couldn't have been</i> nếu chưa có căn cứ loại trừ hoàn toàn khả năng đó.</div></div>
+  </div>
+
+  <div class="card soft">
+    <span class="badge badge-teacher">Bảng tổng hợp đáp án nhanh</span>
+    <div class="table-wrap">
+      <table class="grammar">
+        <thead><tr><th>Bài</th><th>Câu</th><th>Đáp án</th></tr></thead>
+        <tbody>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">1</td><td data-label="Đáp án">might be in her room</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">2</td><td data-label="Đáp án">might know</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">3</td><td data-label="Đáp án">might be Brazilian</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">4</td><td data-label="Đáp án">may not be possible</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">5</td><td data-label="Đáp án">may be Tom's</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">6</td><td data-label="Đáp án">might be driving</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">7</td><td data-label="Đáp án">might have one</td></tr>
+          <tr><td data-label="Bài">29.1</td><td data-label="Câu">8</td><td data-label="Đáp án">may not be feeling well</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">1</td><td data-label="Đáp án">be having / having</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">2</td><td data-label="Đáp án">be</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">3</td><td data-label="Đáp án">have arrived</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">4</td><td data-label="Đáp án">be waiting</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">5</td><td data-label="Đáp án">have told</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">6</td><td data-label="Đáp án">have gone</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">7</td><td data-label="Đáp án">be watching</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">8</td><td data-label="Đáp án">have</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">9</td><td data-label="Đáp án">have left</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">10</td><td data-label="Đáp án">have heard</td></tr>
+          <tr><td data-label="Bài">29.2</td><td data-label="Câu">11</td><td data-label="Đáp án">have forgotten</td></tr>
+          <tr><td data-label="Bài">29.3</td><td data-label="Câu">1</td><td data-label="Đáp án">might not have known</td></tr>
+          <tr><td data-label="Bài">29.3</td><td data-label="Câu">2</td><td data-label="Đáp án">might not have wanted</td></tr>
+          <tr><td data-label="Bài">29.3</td><td data-label="Câu">3</td><td data-label="Đáp án">couldn't have been</td></tr>
+          <tr><td data-label="Bài">29.3</td><td data-label="Câu">4</td><td data-label="Đáp án">couldn't have tried</td></tr>
+          <tr><td data-label="Bài">29.3</td><td data-label="Câu">5</td><td data-label="Đáp án">might not have been American</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-bottom:0;"><b>Lưu ý:</b> Ở câu 29.2.1, nếu chỉ điền vào chỗ trống sau <i>might be</i>, đáp án cần viết là <b>having</b>. Tương tự, câu 29.2.3 cần dùng <b>have arrived</b>, không phải <i>arrive</i>, vì cấu trúc suy đoán về quá khứ là <i>may/might have + V3/ed</i>.</p>
+  </div>
+
+  <div class="card soft">
+    <span class="badge badge-teacher">Giải thích vì sao các đáp án sai không phù hợp</span>
+    <ul>
+      <li><b>29.1.7 – "might have one":</b> Nhiều học sinh hiểu nhầm đây là cấu trúc quá khứ <i>might have + V3/ed</i>. Thực ra <i>have</i> ở đây là động từ nguyên mẫu nghĩa "có", và <i>one</i> thay cho <i>a key</i>. Nếu viết "might have had one" thì lại thành suy đoán quá khứ — không đúng ngữ cảnh hiện tại.</li>
+      <li><b>29.2.2 – "be":</b> Không thể dùng <i>is</i> hay <i>being</i> vì sau <i>may</i> luôn là động từ nguyên mẫu không có <i>to</i>.</li>
+      <li><b>29.3.3 – "couldn't have been":</b> Không thể dùng <i>might not have been</i> vì câu có <i>It was deliberate</i> — bằng chứng cho thấy người nói loại trừ hoàn toàn khả năng đó là tai nạn.</li>
+      <li><b>29.3.5 – "might not have been American":</b> Không dùng <i>couldn't have been</i> vì chưa có căn cứ nào loại trừ hoàn toàn khả năng người đó là người Mỹ.</li>
+    </ul>
+  </div>
+</div>
+`;
+
+function buildAnswerKey(){
+  const area = document.getElementById('answerKeyArea');
+  area.innerHTML = ANSWER_KEY_HTML;
+  const toggle = document.getElementById('akToggle');
+  const hide = document.getElementById('akHide');
+  toggle.addEventListener('click',()=>{
+    const b = document.getElementById('akBody');
+    const open = b.classList.toggle('show');
+    toggle.textContent = open ? '👁 Hide Answers' : '👁 Show Answers';
+  });
+  hide.addEventListener('click',()=>{
+    document.getElementById('akBody').classList.remove('show');
+    document.getElementById('akToggle').textContent = '👁 Show Answers';
+  });
+}
+
+/* ---------- 9. FINAL QUIZ ---------- */
+const QUIZ = [
+  {topic:'present', q:"Take an umbrella with you. It ______ rain later.",
+   options:["might","might be","might have","maybe"], answer:0,
+   explain:"Sau chủ ngữ <i>It</i> cần một động từ khuyết thiếu → <b>might + V (rain)</b>. \"maybe\" là trạng từ, không đứng sau chủ ngữ làm động từ."},
+  {topic:'present', q:"'Where's Kate?' 'I'm not sure. She ______ in the garden.'",
+   options:["may be","maybe","may is","may being"], answer:0,
+   explain:"<b>may be</b> (2 từ) = may + động từ be. \"maybe\" (1 từ) là trạng từ. \"may is\" sai vì sau may không chia động từ."},
+  {topic:'present', q:"'Is that story true?' '______. I don't know.'",
+   options:["Maybe","May be","Might be","May"], answer:0,
+   explain:"Trả lời ngắn bằng trạng từ <b>Maybe</b> (= perhaps). Không dùng \"May be\" vì đây là động từ, không thể đứng một mình."},
+  {topic:'present', q:"It ______ be true, but I really doubt it.",
+   options:["may not","may","maybe","might not been"], answer:0,
+   explain:"Dạng phủ định là <b>may not</b> + V nguyên mẫu. Câu đầy đủ: <i>It may not be true.</i> = Có lẽ điều đó không đúng."},
+  {topic:'present', q:"You should ask Rachel. She ______ the answer.",
+   options:["might know","might knows","might knowing","might be know"], answer:0,
+   explain:"Sau <i>might</i> phải là động từ nguyên mẫu → <b>might know</b>. Không chia ngôi thứ ba số ít sau động từ khuyết thiếu."},
+
+  {topic:'ing', q:"'Why doesn't Ben answer the phone?' 'He ______ a shower.'",
+   options:["might be having","might have","might having","might have had"], answer:0,
+   explain:"Hành động tắm có thể đang diễn ra ngay lúc này → <b>might + be + V-ing</b> = <i>might be having</i>."},
+  {topic:'ing', q:"The lights are on, so someone ______ in the office.",
+   options:["may be working","may work","may have worked","may be work"], answer:0,
+   explain:"Đèn đang bật → ai đó có thể <b>đang</b> làm việc → <b>may + be + V-ing</b>. \"may work\" chỉ nói khả năng chung chung, không diễn tả hành động đang diễn ra."},
+  {topic:'ing', q:"'Where's Lucy?' 'She ______ TV in her room.'",
+   options:["might be watching","might watch","might have watched","might be watch"], answer:0,
+   explain:"<b>might + be + V-ing</b> = <i>might be watching</i>. \"might be watch\" sai vì sau <i>be</i> phải là V-ing."},
+  {topic:'ing', q:"Don't make a noise. The baby ______.",
+   options:["may be sleeping","may sleep","may have slept","may be sleep"], answer:0,
+   explain:"Em bé có thể <b>đang</b> ngủ ngay lúc này → <b>may + be + V-ing</b>."},
+
+  {topic:'past', q:"I can't find my keys. I ______ them at work.",
+   options:["may have left","may leave","may be leaving","may left"], answer:0,
+   explain:"Việc để quên chìa khóa có thể đã xảy ra trước thời điểm nói → <b>may + have + V3/ed</b> = <i>may have left</i>."},
+  {topic:'past', q:"'Why wasn't Amy at the meeting yesterday?' 'She ______ about it.'",
+   options:["might not have known","might not know","couldn't know","must not know"], answer:0,
+   explain:"Cuộc họp đã diễn ra hôm qua → cần cấu trúc quá khứ <b>might not have + V3/ed</b> = <i>might not have known</i>."},
+  {topic:'past', q:"Kate didn't answer her phone last night. She ______ asleep.",
+   options:["may have been","may be","may have being","may been"], answer:0,
+   explain:"<b>may + have + been</b> + tính từ <i>asleep</i> — suy đoán về trạng thái trong quá khứ."},
+  {topic:'past', q:"David was in a bad mood yesterday. He ______ well.",
+   options:["may not have been feeling","may not be feeling","couldn't have been feeling","may not been feeling"], answer:0,
+   explain:"Trạng thái không khỏe <b>đang kéo dài</b> trong quá khứ → <b>may not have been + V-ing</b>. \"may not be feeling\" là hiện tại, không khớp với <i>yesterday</i>."},
+
+  {topic:'could', q:"Sarah ______ my message. Otherwise she would have replied.",
+   options:["couldn't have received","might not have received","may not receive","might not receive"], answer:0,
+   explain:"<i>Otherwise she would have replied</i> cho thấy người nói <b>loại trừ hoàn toàn</b> khả năng Sarah nhận được tin nhắn → <b>couldn't have + V3/ed</b>."},
+  {topic:'could', q:"I suppose Sarah ______ my message. Perhaps she did, perhaps she didn't.",
+   options:["might not have received","couldn't have received","must not have received","may not receive"], answer:0,
+   explain:"Người nói <b>không chắc</b> — có thể cô ấy đã nhận, mà cũng có thể chưa → dùng <b>might not have + V3/ed</b>, KHÔNG dùng <i>couldn't have</i>."}
+];
+
+const TOPIC_LABEL = {
+  present:'may/might + V (hiện tại – tương lai)',
+  ing:'may/might + be + V-ing',
+  past:'may/might + have + V3/ed',
+  could:'might not have vs couldn\'t have'
+};
+
+const quizArea = document.getElementById('quizArea');
+
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    const t = arr[i]; arr[i]=arr[j]; arr[j]=t;
+  }
+  return arr;
+}
+
+function buildQuizOrder(){
+  const order = QUIZ.map((q,i)=>i);
+  shuffle(order);
+  return order;
+}
+
+function renderQuiz(){
+  if(!state.quiz.order || state.quiz.order.length !== QUIZ.length){
+    state.quiz.order = buildQuizOrder();
+    saveState();
+  }
+  quizArea.innerHTML = '';
+  state.quiz.order.forEach((qi, pos)=>{
+    const q = QUIZ[qi];
+    // trộn vị trí đáp án (lưu lại thứ tự đã trộn để ổn định)
+    const key = 'q'+qi;
+    if(!state.quiz._shuf) state.quiz._shuf = {};
+    if(!state.quiz._shuf[key]){
+      const opts = q.options.map((t,k)=>({t, correct: k===q.answer}));
+      shuffle(opts);
+      state.quiz._shuf[key] = opts;
+    }
+    const opts = state.quiz._shuf[key];
+
+    const card = document.createElement('div');
+    card.className = 'q-box';
+    card.style.marginBottom = '14px';
+    let html = '<div class="q-index">Câu '+(pos+1)+' / '+QUIZ.length+'</div>';
+    html += '<div class="q-text">'+q.q+'</div><div class="opts">';
+    opts.forEach((o,k)=>{
+      const chosen = state.quiz.answers[qi];
+      const isChosen = chosen === k;
+      const answered = state.quiz.submitted;
+      let cls = 'opt';
+      if(isChosen) cls += ' selected';
+      if(answered){
+        if(o.correct) cls += ' correct';
+        else if(isChosen) cls += ' wrong';
+      }
+      html += '<button class="'+cls+'" data-qi="'+qi+'" data-k="'+k+'"'+(answered?' disabled':'')+'>'+
+              '<span class="letter">'+String.fromCharCode(65+k)+'</span><span>'+o.t+'</span></button>';
+    });
+    html += '</div>';
+    if(state.quiz.submitted){
+      const chosen = state.quiz.answers[qi];
+      const correctIdx = opts.findIndex(o=>o.correct);
+      const ok = chosen === correctIdx;
+      html += '<div class="feedback show '+(ok?'ok':'no')+'">'+
+              '<div class="fb-title">'+(ok?'✅ Đúng':'❌ Sai')+'</div>'+
+              '<div>Đáp án đúng: <b>'+String.fromCharCode(65+correctIdx)+'. '+q.options[q.answer]+'</b></div>'+
+              '<div style="margin-top:6px;">'+q.explain+'</div></div>';
+    }
+    card.innerHTML = html;
+    quizArea.appendChild(card);
+  });
+
+  if(!state.quiz.submitted){
+    quizArea.querySelectorAll('.opt').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const qi = btn.dataset.qi;
+        const k = parseInt(btn.dataset.k,10);
+        state.quiz.answers[qi] = k;
+        saveState();
+        // cập nhật giao diện nhẹ
+        const card = btn.closest('.q-box');
+        card.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+  }
+  saveState();
+}
+
+document.getElementById('quizSubmit').addEventListener('click',()=>{
+  if(state.quiz.submitted){
+    toast('Bạn đã nộp bài rồi. Bấm "Làm lại" nếu muốn thử lại.');
+    return;
+  }
+  const answeredCount = Object.keys(state.quiz.answers).length;
+  if(answeredCount < QUIZ.length){
+    if(!confirm('Bạn mới trả lời '+answeredCount+'/'+QUIZ.length+' câu. Vẫn nộp bài?')) return;
+  }
+  state.quiz.submitted = true;
+  let score = 0;
+  const wrongTopics = {};
+  state.quiz.order.forEach(qi=>{
+    const q = QUIZ[qi];
+    const opts = state.quiz._shuf['q'+qi];
+    const correctIdx = opts.findIndex(o=>o.correct);
+    if(state.quiz.answers[qi] === correctIdx) score++;
+    else wrongTopics[q.topic] = (wrongTopics[q.topic]||0)+1;
+  });
+  state.quiz.score = score;
+  saveState();
+  renderQuiz();
+  renderQuizResult(score, wrongTopics);
+  document.getElementById('quizResult').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+function renderQuizResult(score, wrongTopics){
+  const box = document.getElementById('quizResult');
+  const total = QUIZ.length;
+  let comment, commentVi;
+  if(score >= 13){ comment = '🏆 Excellent!'; commentVi = 'Xuất sắc! Bạn đã nắm rất vững cách dùng may và might.'; }
+  else if(score >= 10){ comment = '👍 Good job!'; commentVi = 'Khá tốt! Hãy xem lại vài điểm nhỏ bên dưới.'; }
+  else if(score >= 7){ comment = '🙂 Not bad!'; commentVi = 'Trung bình. Nên ôn lại các cấu trúc và làm lại bài tập.'; }
+  else { comment = '💪 Keep trying!'; commentVi = 'Cần ôn lại kỹ phần lý thuyết A, B, C rồi làm lại bài kiểm tra.'; }
+
+  let html = '<div class="result-panel">';
+  html += '<div class="score-big">'+score+'/'+total+'</div>';
+  html += '<div class="score-sub">'+(score*100/total).toFixed(0)+'% câu đúng</div>';
+  html += '<div style="margin-top:12px;font-size:17px;font-weight:700;">'+comment+'</div>';
+  html += '<div style="opacity:.9;font-size:14px;margin-top:4px;">'+commentVi+'</div>';
+  html += '<div class="review-list"><b>Số câu đúng:</b> '+score+' &nbsp;·&nbsp; <b>Số câu sai:</b> '+(total-score)+'</div>';
+
+  const topics = Object.keys(wrongTopics);
+  if(topics.length){
+    html += '<div class="review-list"><b>Phần cần ôn tập thêm:</b><ul style="margin:6px 0 0;padding-left:20px;">';
+    topics.forEach(t=>{
+      html += '<li>'+TOPIC_LABEL[t]+' — sai '+wrongTopics[t]+' câu</li>';
+    });
+    html += '</ul></div>';
+  }else{
+    html += '<div class="review-list">🎉 Bạn không sai câu nào. Tuyệt vời!</div>';
+  }
+  html += '</div>';
+  box.innerHTML = html;
+}
+
+document.getElementById('quizReset').addEventListener('click',()=>{
+  if(!confirm('Làm lại bài kiểm tra? Điểm và câu trả lời hiện tại sẽ bị xóa.')) return;
+  state.quiz = {order: buildQuizOrder(), answers:{}, submitted:false, score:null, _shuf:{}};
+  saveState();
+  document.getElementById('quizResult').innerHTML = '';
+  renderQuiz();
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+/* ---------- 10. FINAL CHECKLIST ---------- */
+const FINAL_CHECK = [
+  'Tôi hiểu rằng may/might dùng để nói một việc CÓ THỂ xảy ra, nhưng người nói không chắc.',
+  'Tôi viết đúng: S + may/might + V (nguyên mẫu).',
+  'Tôi viết đúng: S + may/might + be + adj/noun.',
+  'Tôi viết đúng: S + may/might + be + V-ing (hành động có thể đang diễn ra).',
+  'Tôi viết đúng: S + may/might + have + V3/ed (suy đoán về quá khứ).',
+  'Tôi phân biệt được may be (2 từ) và maybe (1 từ).',
+  'Tôi phân biệt được might not have + V3/ed và couldn\'t have + V3/ed.',
+  'Tôi biết couldn\'t have + V3/ed nghĩa là "không thể nào đã…".'
+];
+function buildFinalChecklist(){
+  const box = document.getElementById('finalChecklist');
+  box.innerHTML = '';
+  FINAL_CHECK.forEach((t,i)=>{
+    const div = document.createElement('div');
+    div.className = 'obj-item' + (state.finalCheck[i] ? ' done' : '');
+    div.innerHTML = '<div class="obj-check">'+(state.finalCheck[i]?'✓':'')+'</div><div class="obj-text">'+t+'</div>';
+    div.addEventListener('click',()=>{
+      state.finalCheck[i] = !state.finalCheck[i];
+      saveState();
+      buildFinalChecklist();
+    });
+    box.appendChild(div);
+  });
+}
+document.getElementById('reviewBtn').addEventListener('click',()=>showSection(2));
+
+/* ---------- 11. INIT ---------- */
+function init(){
+  loadState();
+  buildNav();
+  buildObjectives();
+  renderGuided();
+  buildExercises();
+  buildAnswerKey();
+  renderQuiz();
+  buildFinalChecklist();
+
+  // khôi phục trạng thái đã nộp của quiz
+  if(state.quiz.submitted && state.quiz.score !== null){
+    let score = 0; const wrongTopics = {};
+    state.quiz.order.forEach(qi=>{
+      const q = QUIZ[qi];
+      const opts = state.quiz._shuf['q'+qi];
+      const correctIdx = opts.findIndex(o=>o.correct);
+      if(state.quiz.answers[qi] === correctIdx) score++;
+      else wrongTopics[q.topic] = (wrongTopics[q.topic]||0)+1;
+    });
+    renderQuizResult(score, wrongTopics);
+  }
+
+  showSection(state.section || 0);
+}
+
+init();
+</script>
+</body>
+</html>
